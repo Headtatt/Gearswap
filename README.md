@@ -43,10 +43,10 @@ Setting up my Gearswaps and Github updating.
 6.) Open Github Desktop and login. (As Admin if your Gearswap Folder is located in Program Files)
     https://www.dropbox.com/s/ietq7dpe0obqcor/Github%20As%20Admin.png?dl=0
 
-7.) Click File, Clone Repository, click the URL tab, in the Repository box put: Selindrile/GearSwap
+7.) Click File, Clone Repository, click the URL tab, in the Repository box put: Headtatt/GearSwap
     in the Local Path box put the location your Gearswap directory was, for example
     C:\Program Files\Windower\Addons\Gearswap           then click Clone.
-    https://www.dropbox.com/s/kaz8m4k26eymop3/Clone.png?dl=0
+    
     
 8.) Move your old Gearswap folder on the desktop to the same directory as the new one to merge them.
     https://www.dropbox.com/s/vd5tqw7mw6t9xa6/Merge%201.png?dl=0
