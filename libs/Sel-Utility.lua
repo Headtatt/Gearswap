@@ -2433,12 +2433,13 @@ function get_effective_player_tp(spell, WSset)
 	local effective_tp = player.tp
 	if is_fencing() then effective_tp = effective_tp + get_fencer_tp_bonus(WSset) end
 	if buffactive['Crystal Blessing'] then effective_tp = effective_tp + 250 end
+	if data.equipment.magian_tp_bonus_melee_weapons:contains(player.equipment.main) then effective_tp = effective_tp + 1000 end
 	if data.equipment.magian_tp_bonus_melee_weapons:contains(player.equipment.sub) then effective_tp = effective_tp + 1000 end
 	if data.equipment.magian_tp_bonus_ranged_weapons:contains(player.equipment.range) then effective_tp = effective_tp + 1000 end
 	if state.Buff['Warcry'] and player.main_job == "WAR" and lastwarcry == player.name then effective_tp = effective_tp + warcry_tp_bonus end
 	if WSset.ear1 == "Moonshade Earring" or WSset.ear2 == "Moonshade Earring" then effective_tp = effective_tp + 250 end
 	if WSset.head == "Mpaca's Cap" then effective_tp = effective_tp + 200 end
-	if WSset.body == "Ikenga's Vest" then effective_tp = effective_tp + 170 end
+	if WSset.body == "Ikenga's Vest" then effective_tp = effective_tp + 190 end
 	
 	if spell.skill == 25 or spell.skill == 26 then
 		if data.equipment.aeonic_weapons:contains(player.equipment.range) then effective_tp = effective_tp + 500 end

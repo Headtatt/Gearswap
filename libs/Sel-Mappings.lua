@@ -357,9 +357,15 @@ data.equipment.aeonic_weapons = S{'Dojikiri Yasutsuna','Chango','Trishula','Sequ
 	'Godhands','Tri-Edge','Anguta','Heishi Shorinken','Tishtrya', 'Fail-Not','Fomalhaut'}
 
 --Only tracking 1-handed weapons for offhanding as they're all that's used in meta.
-data.equipment.magian_tp_bonus_melee_weapons = S{'Sphyras','Barracudas +3','Barracudas +2','Centovente','Fusetto +3','Fusetto +2',
-	'Thibron','Machaera +3','Machaera +2','Fernagu',"Renaud's Axe +3","Renaud's Axe +2",'Hitaki','Uzura +3','Uzura +2',
-	'Ukaldi','Makhila +3','Makhila +2'}
+data.equipment.magian_tp_bonus_melee_weapons = S{
+	'Sphyras','Barracudas +3','Barracudas +2',
+	'Centovente','Fusetto +3','Fusetto +2',
+	'Thibron','Machaera +3','Machaera +2',
+	'Fernagu',"Renaud's Axe +3","Renaud's Axe +2",
+	'Hitaki','Uzura +3','Uzura +2',
+	'Ukaldi','Makhila +3','Makhila +2',
+	'Kantonotachi','Keitonotachi +3','Keitonotachi +2'
+}
 
 data.equipment.magian_tp_bonus_ranged_weapons = S{'Ataktos','Anarchy +3','Anarchy +2','Accipiter','Sparrowhawk +3','Sparrowhawk +2'}
 
