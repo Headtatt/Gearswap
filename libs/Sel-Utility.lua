@@ -2429,9 +2429,10 @@ windower.raw_register_event('outgoing chunk',function(id,original,modified,injec
 end)
 
 --TP Bonus Handling
+Ikenga_vest_bonus = 190  -- It is 190 at R20. Don't edit here, the same variable is in place in both COR and RNG gearfiles.
+
 function get_effective_player_tp(spell, WSset)
 	local effective_tp = player.tp
-	Ikenga_vest_bonus = 190  -- It is 190 at R20
 	
 	if is_fencing() then effective_tp = effective_tp + get_fencer_tp_bonus(WSset) end
 	if buffactive['Crystal Blessing'] then effective_tp = effective_tp + 250 end
