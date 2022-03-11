@@ -66,7 +66,7 @@ function job_setup()
 	state.AutoManawell = M(true, 'Auto Manawell Mode')
 	state.RecoverMode = M('35%', '60%', 'Always', 'Never')
 
-	autows = 'Myrkr'
+	autows = 'Vidohunir'
 	autofood = 'Pear Crepe'
 	
 	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoNukeMode","AutoManawell","AutoWSMode","AutoShadowMode","AutoFoodMode","AutoStunMode","AutoDefenseMode","TPEatMode"},{"AutoBuffMode","Weapons","OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","RecoverMode","ElementalMode","CastingMode","TreasureMode",})
@@ -453,7 +453,7 @@ function handle_elemental(cmdParams)
 	elseif command == 'ninjutsu' then
 		windower.chat.input('/ma "'..data.elements.ninjutsu_nuke_of[state.ElementalMode.value]..': Ni" '..target..'')
 			
-	elseif command == 'smallnuke' then
+	elseif command == 'smallnuke' or command == 'lite' then
 		local spell_recasts = windower.ffxi.get_spell_recasts()
 	
 		local tiers = {' II',''}
@@ -562,6 +562,10 @@ buff_spell_lists = {
 		{Name='Refresh',		Buff='Refresh',			SpellID=109,	When='Always'},
 		{Name='Stoneskin',		Buff='Stoneskin',		SpellID=54,		When='Always'},
 		{Name='Klimaform',		Buff='Klimaform',		SpellID=287,	When='Combat'},
+		{Name='Blink',			Buff='Blink',			SpellID=53,		When='Always'},
+		{Name='Regen',			Buff='Regen',			SpellID=108,	When='Always'},
+		{Name='Phalanx',		Buff='Phalanx',			SpellID=106,	When='Always'},
+		{Name='Aquaveil',		Buff='Aquaveil',		SpellID=55,		When='Always'},
 	},
 	
 	Default = {

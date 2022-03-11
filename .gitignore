@@ -19,13 +19,6 @@ version_history.txt
 beta_examples_and_information/*
 libs/Mote-*
 libs/rev1/*
-*_Gear.lua
-*_Crafting.lua
-*-Items.lua
-*-Globals.lua
-
-
-
 
 libs/closetCleaner.lua
 
