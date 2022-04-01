@@ -7,6 +7,8 @@ function user_job_setup()
 	state.IdleMode:options('Normal', 'PDT')
 	state.Weapons:options('Default','DualWeapons','DualSavageWeapons','DualEviscerationWeapons','DualMagicWeapons','DualMalevolence')
 	
+	--Ikenga_vest_bonus = 190  -- It is 190 at R20. Uncomment if you need to manually adjust because you are using below R20
+	
 	WeaponType =  {['Fail-Not'] = "Bow",
                    ['Fomalhaut'] = "Gun",
 				   ['Ataktos'] = "Gun",
