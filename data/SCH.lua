@@ -168,7 +168,7 @@ function job_post_midcast(spell, spellMap, eventArgs)
 		equip(sets.buff['Dark Arts'])
     elseif spell.skill == 'Elemental Magic' and spell.english ~= 'Impact' then
 		if state.MagicBurstMode.value ~= 'Off' then
-			if spell.english:endswith('Helix') or spell.english:endswith('Helix II') then
+			if spellMap == 'Helix' then
 				if state.CastingMode.value:contains('Resistant') and sets.ResistantHelixBurst then
 					equip(sets.ResistantHelixBurst)
 				elseif sets.HelixBurst then
