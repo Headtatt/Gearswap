@@ -136,7 +136,10 @@ function handle_set(cmdParams)
         end
         msg = msg .. '.'
         
-        add_to_chat(122, msg)
+		if (descrip ~= 'Elemental Mode') then
+        	add_to_chat(122, msg)
+		end
+
         handle_update({'auto'})
     else
         add_to_chat(123,'Sel-Libs: Set: Unknown field ['..cmdParams[1]..']')
@@ -731,23 +734,23 @@ end
 
 function handle_displayelement()
 	
-	if state.ElementalMode.value == 'Fire' then
-		add_to_chat(8,'<Fire> (Strong vs Ice, Weak vs Water)')
-	elseif state.ElementalMode.value == 'Wind' then
-		add_to_chat(8,'<Wind> (Strong vs Earth, Weak vs Ice)')
-	elseif state.ElementalMode.value == 'Lightning' then
-		add_to_chat(8,'<Lightning> (Strong vs Water, Weak vs Earth)')
-	elseif state.ElementalMode.value == 'Light' then
-		add_to_chat(8,'<Light> (Strong vs Darkness)')
-	elseif state.ElementalMode.value == 'Earth' then
-		add_to_chat(8,'<Earth> (Strong vs Lightning, Weak vs Wind)')
-	elseif state.ElementalMode.value == 'Ice' then
-		add_to_chat(8,'<Ice> (Strong vs Wind, Weak vs Fire)')
-	elseif state.ElementalMode.value == 'Water' then
-		add_to_chat(8,'<Water> (Strong vs Fire, Weak vs Lightning)')
-	elseif state.ElementalMode.value == 'Dark' then
-		add_to_chat(8,'<Darkness> (Strong vs Light)')
-	end
+	--if state.ElementalMode.value == 'Fire' then
+	--	add_to_chat(8,'<Fire> (Strong vs Ice, Weak vs Water)')
+	--elseif state.ElementalMode.value == 'Wind' then
+	--	add_to_chat(8,'<Wind> (Strong vs Earth, Weak vs Ice)')
+	--elseif state.ElementalMode.value == 'Lightning' then
+	--	add_to_chat(8,'<Lightning> (Strong vs Water, Weak vs Earth)')
+	--elseif state.ElementalMode.value == 'Light' then
+	--	add_to_chat(8,'<Light> (Strong vs Darkness)')
+	--elseif state.ElementalMode.value == 'Earth' then
+	--	add_to_chat(8,'<Earth> (Strong vs Lightning, Weak vs Wind)')
+	--elseif state.ElementalMode.value == 'Ice' then
+	--	add_to_chat(8,'<Ice> (Strong vs Wind, Weak vs Fire)')
+	--elseif state.ElementalMode.value == 'Water' then
+	--	add_to_chat(8,'<Water> (Strong vs Fire, Weak vs Lightning)')
+	--elseif state.ElementalMode.value == 'Dark' then
+	--	add_to_chat(8,'<Darkness> (Strong vs Light)')
+	--end
 
 end
 

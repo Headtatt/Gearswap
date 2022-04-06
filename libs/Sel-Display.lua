@@ -177,6 +177,7 @@ function update_job_states()
 		JugMode = "Pet",
 		RewardMode = "Reward",
 		AutoNukeMode = "Auto Nuke: "..autonuke.."",
+		TPEatMode = "TP Eat",
 		AutoSongMode = "Auto Song",
 		AutoJumpMode = "Auto Jump",
 		AutoWSMode = "Auto WS: "..autows..": "..autowstp.."",
