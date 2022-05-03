@@ -4,14 +4,12 @@ function user_job_setup()
 	state.HybridMode:options('Normal','DT')
     state.CastingMode:options('Normal','Resistant','AoE')
     state.IdleMode:options('Normal','DT')
-	state.Weapons:options('None','Naegling','DualNaegling','DualTauret')
+	state.Weapons:options('None','Naegling','DualNaegling','DualAeolian')
 
 	gear.melee_jse_back = { name="Intarabus's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+9','"Store TP"+10','Damage taken-5%',}}
 	gear.magic_jse_back = { name="Intarabus's Cape", augments={'CHR+20','Mag. Acc+20 /Mag. Dmg.+20','Mag. Acc.+10','"Fast Cast"+10','Damage taken-5%',}}
 
-	-- Adjust this if using the Terpander (new +song instrument)
     info.ExtraSongInstrument = 'Daurdabla'
-	-- How many extra songs we can keep from Daurdabla/Terpander
     info.ExtraSongs = 2
 	
 	-- Set this to false if you don't want to use custom timers.
@@ -20,9 +18,6 @@ function user_job_setup()
 	-- Additional local binds
     send_command('bind ^` gs c cycle ExtraSongsMode')
 	send_command('bind !` input /ma "Chocobo Mazurka" <me>')
-	--send_command('bind @` gs c cycle MagicBurstMode')
-	--send_command('bind @f10 gs c cycle RecoverMode')
-	--send_command('bind @f8 gs c toggle AutoNukeMode')
 	send_command('bind !r gs c weapons None;gs c update')
 	send_command('bind !q gs c weapons NukeWeapons;gs c update')
 	send_command('bind ^q gs c weapons Swords;gs c update')
@@ -55,16 +50,16 @@ function init_gear_sets()
 	TelchineLegs_EMD_CP	= { name="Telchine Braconi", augments={'"Cure" potency +8%','Enh. Mag. eff. dur. +10',}}
 	TelchineFeet_EMD_CP	= { name="Telchine Pigaches", augments={'"Cure" potency +8%','Enh. Mag. eff. dur. +10',}}
 
-	BRD_Relic_Head		= "Bihu Roundlet +2"
+	BRD_Relic_Head		= "Bihu Roundlet +3"
 	BRD_Relic_Body		= "Bihu Justaucorps +3"
-	BRD_Relic_Hand		= "Bihu Cuffs +1"
-	BRD_Relic_Legs		= "Bihu Cannions +1"
+	BRD_Relic_Hand		= "Bihu Cuffs +3"
+	BRD_Relic_Legs		= "Bihu Cannions +3"
 	BRD_Relic_Feet		= "Bihu Slippers +3"
 
-	BRD_AF_Head			= "Brioso Roundlet +2"
-	BRD_AF_Body			= "Brioso Justaucorps +2"
+	BRD_AF_Head			= "Brioso Roundlet +3"
+	BRD_AF_Body			= "Brioso Justaucorps +3"
 	BRD_AF_Hand			= "Brioso Cuffs +3"
-	BRD_AF_Legs			= "Brioso Cannions +2"
+	BRD_AF_Legs			= "Brioso Cannions +3"
 	BRD_AF_Feet			= "Brioso Slippers +3"
 
 	BRD_Empy_Head		= "Fili Calot +1"
@@ -72,6 +67,14 @@ function init_gear_sets()
 	BRD_Empy_Hand		= "Fili Manchettes +1"
 	BRD_Empy_Legs		= "Fili Rhingrave +1"
 	BRD_Empy_Feet		= "Fili Cothurnes +1"
+
+	StikiniRing_Ring1	= { name = "Stikini Ring +1", bag = "wardrobe2" }
+	StikiniRing_Ring2	= { name = "Stikini Ring +1", bag = "wardrobe3" }
+
+	ChirichRing_Ring1	= { name = "Chirich Ring +1", bag = "wardrobe3" }
+	ChirichRing_Ring2	= { name = "Chirich Ring +1", bag = "wardrobe4" }
+
+	TPBonus_Dagger		= "Centovente"
 
 	--------------------------------------
 	-- Start defining the sets
@@ -87,7 +90,7 @@ function init_gear_sets()
 	sets.weapons.DualNaegling = 
 	{
 		main	= "Naegling",
-		sub		= "Fusetto +2"
+		sub		= TPBonus_Dagger
 	}
 
 	sets.weapons.Naegling = 
@@ -102,10 +105,22 @@ function init_gear_sets()
 		sub		= "Alber Strap"
 	}
 	
-	sets.weapons.DualTauret = 
+	sets.weapons.DualAeolian = 
 	{
-		main	= "Malevolence",--"Tauret",
-		sub		= "Fusetto +2"--Levante Dagger"
+		main	= "Malevolence",
+		sub		= TPBonus_Dagger
+	}
+
+	sets.weapons.Songs = 
+	{
+		main	= "Carnwenhan",
+		sub		= "Ammurapi Shield"
+	}
+
+	sets.weapons.DualSongs = 
+	{
+		main	= "Carnwenhan",
+		sub		= "Kali"
 	}
 
     sets.buff.Sublimation 	= { waist = "Embla Sash" }
@@ -202,6 +217,23 @@ function init_gear_sets()
 		ring2	= "Epaminondas's Ring",
 		back	= AmbuCape_WS,		
 	}
+
+	MagicWS = 
+	{
+		range	= Linos_MD,
+		head	= "Nyame Helm",
+		body	= "Nyame Mail",
+		hands	= "Nyame Gauntlets",
+		legs	= "Nyame Flanchard",
+		feet	= "Nyame Sollerets",
+		neck	= "Sibyl Scarf",
+    	waist	= "Refoccilation Stone",
+    	ear1	= "Friomisi Earring",
+    	ear2	= "Moonshade Earring",
+    	ring1	= "Shiva Ring +1",
+    	ring2	= "Epaminondas's Ring",
+		back	= AmbuCape_MD,
+	}
 		
 	sets.precast.WS.Acc = set_combine(sets.precast.WS, {})
 	
@@ -212,8 +244,8 @@ function init_gear_sets()
 		body	= BRD_Relic_Body,
 		hands	= "Nyame Gauntlets",
 		legs	= "Nyame Flanchard",
-		feet	= BRD_Relic_Feet,
-		neck	= "Republican Platinum Medal",
+		feet	= "Nyame Sollerets",
+		neck	= "Bard's Charm +2",
 		waist	= "Sailfi Belt +1",
 		ear1	= "Moonshade Earring",
 		ear2	= "Ishvara Earring",		
@@ -234,26 +266,9 @@ function init_gear_sets()
 		waist	= "Sailfi Belt +1",
 		ear1	= "Moonshade Earring",
 		ear2	= "Ishvara Earring",		
-		ring1	= "Ilabrat Ring",
+		ring1	= "Metamorph Ring +1",
 		ring2	= "Epaminondas's Ring",
 		back	= AmbuCape_WS,	
-	}
-
-	sets.precast.WS['Aeolian Edge'] = 
-	{
-		range	= Linos_MD,
-		head	= "Nyame Helm",
-		body	= "Nyame Mail",
-		hands	= "Nyame Gauntlets",
-		legs	= "Nyame Flanchard",
-		feet	= "Nyame Sollerets",
-		neck	= "Baetyl Pendant",
-    	waist	= "Refoccilation Stone",
-    	ear1	= "Friomisi Earring",
-    	ear2	= "Moonshade Earring",
-    	ring1	= "Shiva Ring +1",
-    	ring2	= "Epaminondas's Ring",
-		back	= AmbuCape_MD,
 	}
 
 	sets.precast.WS['Evisceration'] = 
@@ -276,70 +291,28 @@ function init_gear_sets()
 	sets.precast.WS["Rudra's Storm"] = 
 	{
 		range	= Linos_WS,
-		head	= "Bunzi's Hat",
+		head	= "Nyame Helm",
 		body	= BRD_Relic_Body,
-		hands	= "Bunzi's Gloves",
-		legs	= "Aya. Cosciales +2",
-		feet	= "Aya. Gambieras +2",
+		hands	= "Nyame Gauntlets",
+		legs	= "Nyame Flanchard",
+		feet	= "Nyame Sollerets",
 		neck	= "Bard's Charm +2",
 		waist	= "Sailfi Belt +1",
-		ear1	= "Moonshade Earring",
-		ear2	= "Ishvara Earring",		
+		ear1	= "Mache Earring +1",
+		ear2	= "Moonshade Earring",		
 		ring1	= "Ilabrat Ring",
     	ring2	= "Epaminondas's Ring",
 		back	= AmbuCape_WS,	
 	}
 
-	sets.precast.WS['Gust Slash'] = 
+	sets.precast.WS['Aeolian Edge']	= set_combine(MagicWS, {})
+	sets.precast.WS['Gust Slash']	= set_combine(MagicWS, {})
+	sets.precast.WS['Cyclone']		= set_combine(MagicWS, {})
+	sets.precast.WS['Cataclysm'] 	= set_combine(MagicWS, 
 	{
-		range	= Linos_MD,
-		head	= "Nyame Helm",
-		body	= "Nyame Mail",
-		hands	= "Nyame Gauntlets",
-		legs	= "Nyame Flanchard",
-		feet	= "Nyame Sollerets",
-		neck	= "Baetyl Pendant",
-    	waist	= "Refoccilation Stone",
-    	ear1	= "Friomisi Earring",
-    	ear2	= "Moonshade Earring",
-    	ring1	= "Shiva Ring +1",
-    	ring2	= "Epaminondas's Ring",
-		back	= AmbuCape_MD,
-	}
-
-	sets.precast.WS['Cyclone'] = 
-	{
-		range	= Linos_MD,
-		head	= "Nyame Helm",
-		body	= "Nyame Mail",
-		hands	= "Nyame Gauntlets",
-		legs	= "Nyame Flanchard",
-		feet	= "Nyame Sollerets",
-		neck	= "Baetyl Pendant",
-    	waist	= "Refoccilation Stone",
-    	ear1	= "Friomisi Earring",
-    	ear2	= "Moonshade Earring",
-    	ring1	= "Shiva Ring +1",
-    	ring2	= "Epaminondas's Ring",
-		back	= AmbuCape_MD,
-	}
-
-	sets.precast.WS['Cataclysm'] = 
-	{
-		range	= Linos_MD,
 		head	= "Pixie Hairpin +1",
-		body	= "Nyame Mail",
-		hands	= "Nyame Gauntlets",
-		legs	= "Nyame Flanchard",
-		feet	= "Nyame Sollerets",
-		neck	= "Baetyl Pendant",
-    	waist	= "Refoccilation Stone",
-    	ear1	= "Friomisi Earring",
-    	ear2	= "Moonshade Earring",
-    	ring1	= "Archon Ring",
-    	ring2	= "Epaminondas's Ring",
-		back	= AmbuCape_MD,
-	}
+		ring1	= "Archon Ring",
+	})
 		
 	-- Swap to these on Moonshade using WS if at 3000 TP
 	sets.MaxTP = 
@@ -418,8 +391,8 @@ function init_gear_sets()
 		legs	= "Inyanga Shalwar +2",
 		feet	= BRD_AF_Feet,
 		neck	= "Moonbow Whistle +1",
-		ring1	= "Stikini Ring +1",
-		ring2	= "Defending Ring",
+		ring1	= StikiniRing_Ring1,
+		ring2	= StikiniRing_Ring2,
 		back	= AmbuCape_FC,
 	}
 		
@@ -444,8 +417,8 @@ function init_gear_sets()
 		waist	= "Acuity Belt +1",
 		ear1	= "Regal Earring",
 		ear2	= "Digni. Earring",
-		ring1	= "Stikini Ring +1",
-		ring2	= "Stikini Ring +1",
+		ring1	= StikiniRing_Ring1,
+		ring2	= StikiniRing_Ring2,
 		back	= AmbuCape_FC,
 	}
 		
@@ -507,7 +480,7 @@ function init_gear_sets()
 		waist	= "Acuity Belt +1",
 		ear1	= "Ethereal Earring",
 		ear2	= "Loquac. Earring",
-		ring1	= "Stikini Ring +1",
+		ring1	= StikiniRing_Ring1,
 		ring2	= "Metamorph Ring +1",
 		back	= AmbuCape_MD,
 	}
@@ -530,8 +503,8 @@ function init_gear_sets()
 		waist	= "Embla Sash",
 		ear1	= "Ethereal Earring",
 		ear2	= "Mendi. Earring",
-		ring1	= "Stikini Ring +1",
-		ring2	= "Stikini Ring +1",
+		ring1	= StikiniRing_Ring1,
+		ring2	= StikiniRing_Ring2,
 		back	= AmbuCape_FC
 	}
 		
@@ -542,8 +515,26 @@ function init_gear_sets()
 		legs	= "Shedir Seraweels"
 	})
 		
-	sets.midcast['Elemental Magic'] 			= {}
-	sets.midcast['Elemental Magic'].Resistant 	= {}
+	sets.midcast['Elemental Magic'] = 
+	{
+		range	= Linos_MD,
+		head	= "Bunzi's Hat",
+		body	= "Bunzi's Robe",
+		hands	= "Bunzi's Gloves",
+		legs	= "Bunzi's Pants",
+		feet	= "Bunzi's Sabots",
+		neck	= "Baetyl Pendant",
+    	waist	= "Refoccilation Stone",
+    	ear1	= "Friomisi Earring",
+    	ear2	= "Hecate's Earring",
+    	ring1	= "Shiva Ring +1",
+    	ring2	= "Metamorph Ring +1",
+		back	= AmbuCape_MD,
+	}
+	sets.midcast['Elemental Magic'].Resistant = set_combine(sets.midcast['Elemental Magic'], {})
+
+	sets.midcast['Holy'] = set_combine(sets.midcast['Elemental Magic'], {})
+	sets.midcast.Banish = set_combine(sets.midcast['Elemental Magic'], {})
 		
 	sets.midcast.Cursna =  set_combine(sets.midcast.Cure, 
 	{
@@ -563,8 +554,6 @@ function init_gear_sets()
 	
 	sets.idle = 
 	{
-		main	= "Carnwenhan",
-		sub		= "Ammurapi Shield",
 		range	= Linos_DT,
 		head	= "Nyame Helm",
 		body	= "Nyame Mail",
@@ -575,7 +564,7 @@ function init_gear_sets()
 		waist	= "Carrier's Sash",
 		ear1	= "Odnowa Earring +1",
 		ear2	= "Eabani Earring",
-		ring1	= "Stikini Ring +1",
+		ring1	= StikiniRing_Ring1,
 		ring2	= "Defending Ring",
 		back	= AmbuCape_FC
 	}
@@ -587,7 +576,7 @@ function init_gear_sets()
 	sets.defense.PDT = {}
 	sets.defense.MDT = {}
 
-	sets.Kiting 				= { feet = BRD_Empy_Feet }
+	sets.Kiting 				= { ring1 = "Shneddick Ring" }
 	sets.latent_refresh 		= { }
 	sets.latent_refresh_grip 	= { }
 	sets.TPEat 					= { neck = "Chrys. Torque" }
@@ -611,8 +600,8 @@ function init_gear_sets()
 		waist	= "Sailfi Belt +1",
 		ear1	= "Telos Earring",
 		ear2	= "Brutal Earring",
-		ring1	= "Chirich Ring +1",
-		ring2	= "Chirich Ring +1",
+		ring1	= ChirichRing_Ring1,
+		ring2	= ChirichRing_Ring2,
 		back	= AmbuCape_TP,
 	}
 
@@ -628,4 +617,10 @@ end
 -- Select default macro book on initial load or subjob change.
 function select_default_macro_book()
 	set_macro_page(6, 14)
+
+	if player.sub_job == 'NIN' or player.sub_job == 'DNC' then
+		state.Weapons:options('DualSongs','DualNaegling','DualAeolian')
+	else
+		state.Weapons:options('Songs','Naegling')
+	end
 end

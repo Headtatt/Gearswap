@@ -51,7 +51,6 @@ local cooldown = 0
 local queue = Q{}
 local pending = nil
 local enabled = false
-local direction = true
 
 local action_events = {
     [2] = 'mid /ra',
@@ -224,27 +223,12 @@ local function able_to_use_weaponskill()
 end
 
 local function execute_pending_action()
-	if buffactive['Hover Shot'] and state.HoverShot.value then
-		if pending.prefix == '/range' then
-			hover_movement()
-			windower.chat.input:schedule(.8, "%s %d":format(pending.prefix, pending.target))
-			cooldown = cooldowns[pending.prefix] + .8
-		elseif pending.prefix == '/weaponskill' then
-			hover_movement()
-			windower.chat.input:schedule(.8, "%s \"%s\" %d":format(pending.prefix, pending.english, pending.target))
-			cooldown = cooldowns[pending.prefix] + .8
-		else
-			windower.chat.input("%s \"%s\" %d":format(pending.prefix, pending.english, pending.target))
-			cooldown = cooldowns[pending.prefix]
-		end	
-	else
-		cooldown = cooldowns[pending.prefix]
-		if pending.prefix == '/range' then
-				windower.chat.input("%s %d":format(pending.prefix, pending.target))
-		else
-			windower.chat.input("%s \"%s\" %d":format(pending.prefix, pending.english, pending.target))
-		end
-	end
+    cooldown = cooldowns[pending.prefix]
+    if pending.prefix == '/range' then
+        windower.chat.input("%s %d":format(pending.prefix, pending.target))
+    else
+        windower.chat.input("%s \"%s\" %d":format(pending.prefix, pending.english, pending.target))
+    end
 end
 
 local function process_pending_action()
@@ -325,20 +309,6 @@ function process_queue()
     if pending then
         process_pending_action()
     end
-end
-
-function hover_movement()
-	if not windower.ffxi.get_player().target_locked then 
-		windower.chat.input('/lockon')
-	end
-
-	if direction then
-		windower.send_command('setkey numpad4 down; wait 0.43; setkey numpad4 up;')
-		direction = false
-	else
-		windower.send_command('setkey numpad6 down; wait 0.43; setkey numpad6 up;')
-		direction = true
-	end
 end
 
 local function handle_interrupt()

@@ -80,7 +80,7 @@ function job_setup()
 	state.Buff['Nightingale'] = buffactive['Nightingale'] or false
 	state.RecoverMode = M('35%', '60%', 'Always', 'Never')
 
-	autows = "Rudra's Storm"
+	autows = "Savage Blade"
 	autofood = 'Pear Crepe'
 	
 	state.AutoSongMode = M(false, 'Auto Song Mode')

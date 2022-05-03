@@ -8,9 +8,6 @@ function user_job_setup()
 	gear.obi_cure_waist = "Witful Belt"
 	gear.obi_low_nuke_waist = "Acuity Belt +1"
 	gear.obi_high_nuke_waist = "Refoccilation Stone"
-	
-	gear.nuke_jse_back = {name="Taranus's Cape",augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','"Mag.Atk.Bns."+10',}}
-	gear.stp_jse_back = {name="Taranus's Cape",augments={'DEX+20','Accuracy+20 Attack+20','"Store TP"+10',}}
 
 		-- Additional local binds
 	send_command('bind ^` gs c cycle ElementalMode') 
@@ -62,10 +59,12 @@ function init_gear_sets()
 	MerlinicFeet_OA		= { name="Merlinic Crackows", augments={'"Mag.Atk.Bns."+28','"Occult Acumen"+11','MND+4',}}
 
 	MerlinicBody_Drain	= { name="Merlinic Jubbah", augments={'Mag. Acc.+3','"Drain" and "Aspir" potency +11','CHR+3',}}
-    MerlinicHand_Drain	= { name="Merlinic Dastanas", augments={'"Mag.Atk.Bns."+25','"Drain" and "Aspir" potency +10','CHR+7',}}
+    MerlinicHand_Drain	= { name="Merlinic Dastanas", augments={'Mag. Acc.+2 "Mag.Atk.Bns."+2','"Drain" and "Aspir" potency +11','MND+10',}}
 
-	MerlinicLegs_Phx	= { name="Merlinic Shalwar", augments={'AGI+8','Pet: Mag. Acc.+13','Phalanx +1','Mag. Acc.+13 "Mag.Atk.Bns."+13',}}
     MerlinicHand_Phx	= { name="Merlinic Dastanas", augments={'Weapon skill damage +3%','Attack+13','Phalanx +2',}}
+	MerlinicFeet_Phx	= { name="Merlinic Crackows", augments={'DEX+3','INT+4','Phalanx +4','Mag. Acc.+10 "Mag.Atk.Bns."+10',}}
+
+	MerlinicLegs_TH		= { name="Merlinic Shalwar", augments={'Accuracy+5','Pet: Phys. dmg. taken -2%','"Treasure Hunter"+1','Accuracy+5 Attack+5','Mag. Acc.+1 "Mag.Atk.Bns."+1',}}
 
 	BLM_Relic_Head		= "Archmage's Petasos +3"
 	BLM_Relic_Body		= "Archmage's Coat +3"
@@ -84,6 +83,12 @@ function init_gear_sets()
 	BLM_Empy_Hand		= "Wicce Gloves"
 	BLM_Empy_Legs		= "Wicce Tonban"
 	BLM_Empy_Feet		= "Wicce Sabots +1"
+
+	StikiniRing_Ring1	= { name = "Stikini Ring +1", bag = "wardrobe2" }
+	StikiniRing_Ring2	= { name = "Stikini Ring +1", bag = "wardrobe3" }
+
+	ChirichRing_Ring1	= { name = "Chirich Ring +1", bag = "wardrobe3" }
+	ChirichRing_Ring2	= { name = "Chirich Ring +1", bag = "wardrobe4" }
 
     --------------------------------------
     -- Start defining the sets
@@ -106,7 +111,10 @@ function init_gear_sets()
     sets.buff.DTSublimation	= { waist = "Embla Sash" }	
 	
 	-- Treasure Hunter
-	sets.TreasureHunter = set_combine(sets.TreasureHunter, {})
+	sets.TreasureHunter = set_combine(sets.TreasureHunter, 
+	{
+		legs	= MerlinicLegs_TH
+	})
     
     ---- Precast Sets ----
     
@@ -179,8 +187,8 @@ function init_gear_sets()
 		head	= "Pixie Hairpin +1",
 		body	= "Nyame Mail",
 		hands	= "Jhakri Cuffs +2",
-		legs	= BLM_Relic_Legs,
-		feet	= BLM_Relic_Feet,
+		legs	= "Nyame Flanchard",
+		feet	= "Nyame Sollerets",
 		neck	= "Saevus Pendant +1",
 		waist	= "Refoccilation Stone",
 		ear1	= "Malignance Earring",
@@ -213,8 +221,8 @@ function init_gear_sets()
 		head	= "Pixie Hairpin +1",
 		body	= "Nyame Mail",
 		hands	= "Jhakri Cuffs +2",
-		legs	= BLM_Relic_Legs,
-		feet	= BLM_Relic_Feet,
+		legs	= "Nyame Flanchard",
+		feet	= "Nyame Sollerets",
 		neck	= "Saevus Pendant +1",
 		waist	= "Refoccilation Stone",
 		ear1	= "Malignance Earring",
@@ -230,8 +238,8 @@ function init_gear_sets()
 		head	= BLM_Relic_Head,
 		body	= "Nyame Mail",
 		hands	= "Jhakri Cuffs +2",
-		legs	= BLM_Relic_Legs,
-		feet	= BLM_Relic_Feet,
+		legs	= "Nyame Flanchard",
+		feet	= "Nyame Sollerets",
 		neck	= "Saevus Pendant +1",
 		waist	= "Refoccilation Stone",
 		ear1	= "Malignance Earring",
@@ -303,8 +311,8 @@ function init_gear_sets()
 		waist	= "Embla Sash",
 		ear1	= "Malignance Earring",
 		ear2	= "Mendi. Earring",
-		ring1	= "Stikini Ring +1",
-		ring2	= "Stikini Ring +1",
+		ring1	= StikiniRing_Ring1,
+		ring2	= StikiniRing_Ring2,
 		back	= AmbuCape_FC
 	}
     
@@ -312,12 +320,16 @@ function init_gear_sets()
 	sets.midcast.Refresh	= set_combine(sets.midcast['Enhancing Magic'], { waist = "Gishdubar Sash", feet = "Inspirited Boots" })
 	sets.midcast.Aquaveil	= set_combine(sets.midcast['Enhancing Magic'], { main = "Vadose Rod", legs = "Shedir Seraweels" })
 	sets.midcast.BarElement	= set_combine(sets.midcast['Enhancing Magic'], { legs = "Shedir Seraweels" })
-	sets.midcast.Phalanx	= set_combine(sets.midcast['Enhancing Magic'], { hands = MerlinicHand_Phx, legs = MerlinicLegs_Phx })
+	sets.midcast.Phalanx	= set_combine(sets.midcast['Enhancing Magic'], 
+	{
+		hands 	= MerlinicHand_Phx, 
+		feet	= MerlinicFeet_Phx
+	})
 
     sets.midcast['Enfeebling Magic'] = 
 	{
-		main	= "Maxentius",
-		sub		= "Ammurapi Shield",
+		main	= "Laevateinn",
+		sub		= "Enki Strap",
 		ammo	= "Ghastly Tathlum +1",
 		head	= "Ea Hat +1",
     	body	= BLM_AF_Body,
@@ -328,7 +340,7 @@ function init_gear_sets()
 		waist	= "Acuity Belt +1",
 		ear1	= "Malignance Earring",
 		ear2	= "Barkarole Earring",
-		ring1	= "Stikini Ring +1",
+		ring1	= StikiniRing_Ring1,
 		ring2	= "Metamorph Ring +1",
 		back	= AmbuCape_MD,
 	}
@@ -425,10 +437,26 @@ function init_gear_sets()
 		back	= AmbuCape_FC,
 	}
 
-    sets.midcast.Stun = {}
-		
-    sets.midcast.Stun.Resistant = {}
+    sets.midcast.Stun = 
+	{
+		main	= "Laevateinn",
+		sub		= "Enki Strap",
+		ammo	= "Ghastly Tathlum +1",
+		head	= "Ea Hat +1",
+    	body	= BLM_AF_Body,
+    	hands	= "Jhakri Cuffs +2",
+		legs	= BLM_AF_Legs,
+		feet	= BLM_Relic_Feet,
+		neck	= "Sorcerer's Stole +2",
+		waist	= "Acuity Belt +1",
+		ear1	= "Malignance Earring",
+		ear2	= "Barkarole Earring",
+		ring1	= StikiniRing_Ring1,
+		ring2	= StikiniRing_Ring2,
+		back	= AmbuCape_MD,
+	}
 
+    sets.midcast.Stun.Resistant = set_combine(sets.midcast.Stun, {})
     sets.midcast.BardSong = {}
 		
 	sets.midcast.Impact = 
@@ -442,7 +470,7 @@ function init_gear_sets()
 		neck	= "Sorcerer's Stole +2",
 		ear1	= "Malignance Earring",
 		ear2	= "Friomisi Earring",
-		ring1	= "Stikini Ring +1",
+		ring1	= StikiniRing_Ring1,
 		ring2	= "Metamor. Ring +1",
 		waist	= "Acuity Belt +1",
 		back	= AmbuCape_MD,
@@ -477,7 +505,7 @@ function init_gear_sets()
     sets.midcast['Elemental Magic'].Resistant 				= set_combine(sets.midcast['Elemental Magic'], 
 	{
 		neck	= "Sorcerer's Stole +2",
-		ring1	= "Stikini Ring +1",
+		ring1	= StikiniRing_Ring1,
 		ring2	= "Metamor. Ring +1",
 	})
 
@@ -488,7 +516,7 @@ function init_gear_sets()
 	sets.midcast['Elemental Magic'].HighTierNuke.Resistant 	= set_combine(sets.midcast['Elemental Magic'].HighTierNuke, 
 	{
 		neck	= "Sorcerer's Stole +2",
-		ring1	= "Stikini Ring +1",
+		ring1	= StikiniRing_Ring1,
 		ring2	= "Metamor. Ring +1",
 		waist	= "Acuity Belt +1"
 	})
@@ -509,8 +537,8 @@ function init_gear_sets()
     	neck	= "Lissome Necklace",
     	ear1	= "Telos Earring",
 		ear2	= "Dedition Earring",
-    	ring1	= "Chirich Ring +1",
-    	ring2	= "Chirich Ring +1",
+    	ring1	= ChirichRing_Ring1,
+    	ring2	= ChirichRing_Ring2,
 		waist	= "Oneiros Rope",
     	back	= AmbuCape_TP,
 	})
@@ -532,8 +560,8 @@ function init_gear_sets()
 		neck	= "Lissome Necklace",
     	ear1	= "Telos Earring",
 		ear2	= "Dedition Earring",
-    	ring1	= "Chirich Ring +1",
-    	ring2	= "Chirich Ring +1",
+    	ring1	= ChirichRing_Ring1,
+    	ring2	= ChirichRing_Ring2,
 		waist	= "Oneiros Rope",
     	back	= AmbuCape_TP,
 	})
@@ -560,7 +588,7 @@ function init_gear_sets()
 		waist	= "Carrier's Sash",
 		ear1	= "Malignance Earring",
 		ear2	= "Ethereal Earring",
-		ring1	= "Stikini Ring +1",
+		ring1	= StikiniRing_Ring1,
 		ring2	= "Defending Ring",
 		back	= AmbuCape_DT
 	}
@@ -612,12 +640,12 @@ function init_gear_sets()
     sets.defense.MDT 	= set_combine(sets.idle.PDT, {})		
     sets.defense.MEVA 	= set_combine(sets.idle.PDT, {})
 
-	sets.Kiting 				= { feet="Herald's Gaiters" }
-    sets.latent_refresh 		= { waist="Fucho-no-obi" }
+	sets.Kiting 				= { ring1 = "Shneddick Ring" }
+    sets.latent_refresh 		= { waist = "Fucho-no-obi" }
 	sets.latent_refresh_grip 	= { }
-	sets.TPEat 					= { neck="Chrys. Torque" }
-	sets.DayIdle 				= {}
-	sets.NightIdle 				= {}
+	sets.TPEat 					= { neck = "Chrys. Torque" }
+	sets.DayIdle 				= { }
+	sets.NightIdle 				= { }
 	
     -- Buff sets: Gear that needs to be worn to actively enhance a current player buff.
 	
@@ -697,8 +725,8 @@ function init_gear_sets()
 		waist	= "Eschan Stone",
 		ear1	= "Telos Earring",
 		ear2	= "Cessance Earring",
-		ring1	= "Chirich Ring +1",
-		ring2	= "Chirich Ring +1",
+		ring1	= ChirichRing_Ring1,
+		ring2	= ChirichRing_Ring2,
 		back	= AmbuCape_TP
 	}
 

@@ -1,13 +1,13 @@
 function user_job_setup()
 	-- Options: Override default values
-    state.OffenseMode:options('Normal','SomeAcc','Acc','FullAcc', 'Fodder')
+    state.OffenseMode:options('Normal','PDT')
     state.WeaponskillMode:options('Match','Normal', 'SomeAcc', 'Acc', 'FullAcc', 'Fodder')
     state.HybridMode:options('Normal', 'PDT')
-    state.PhysicalDefenseMode:options('PDT', 'HP')
+    state.PhysicalDefenseMode:options('PDT')
 	state.MagicalDefenseMode:options('MDT')
 	state.ResistDefenseMode:options('MEVA')
 	state.IdleMode:options('Normal', 'PDT')
-	state.Weapons:options('Verethragna','Godhands','Spharai')
+	state.Weapons:options('Verethragna','Godhands','Spharai','Xoanon')
 
     state.ExtraMeleeMode = M{['description']='Extra Melee Mode', 'None'}
 
@@ -23,69 +23,78 @@ function user_job_setup()
 end
 
 function init_gear_sets()
+	-- Weapons sets
+	sets.weapons.Godhands 		= { main = "Godhands" }
+	sets.weapons.Verethragna	= { main = "Verethragna" }
+	sets.weapons.Spharai		= { main = "Spharai" }
+	sets.weapons.Xoanon			= { main = "Xoanon", sub = "Alber Strap" }
+
 	--------------------------------------
 	-- Start defining the sets
 	--------------------------------------
+
+	MNK_Relic_Head		= "Hesychast's Crown +1"
+	MNK_Relic_Body		= "Hesychast's Cyclas +1"
+	MNK_Relic_Hand		= "Hesychast's Gloves +1"
+	MNK_Relic_Legs		= "Hesychast's Hose +1"
+	MNK_Relic_Feet		= "Hesychast's Gaiters +1"
+
+	MNK_AF_Head			= "Anchorite's Crown +1"
+	MNK_AF_Body			= "Anchorite's Cyclas +2"
+	MNK_AF_Hand			= "Anchorite's Gloves +2"
+	MNK_AF_Legs			= "Anchorite's Hose +2"
+	MNK_AF_Feet			= "Anchorite's Gaiters +2"
+
+	MNK_Empy_Head		= "Bhikku Crown +1"
+	MNK_Empy_Body		= "Bhikku Cyclas +1"
+	MNK_Empy_Hand		= "Bhikku Gloves +1"
+	MNK_Empy_Legs		= "Bhikku Hose +1"
+	MNK_Empy_Feet		= "Bhikku Gaiters +1"
+
+	AmbuCape_MD			= { name="Segomo's Mantle", augments={'INT+20','Mag. Acc+20 /Mag. Dmg.+20','INT+10','Weapon skill damage +10%',}}
+    AmbuCape_WS_VIT		= { name="Segomo's Mantle", augments={'VIT+20','Accuracy+20 Attack+20','VIT+10','Weapon skill damage +10%',}}
+    AmbuCape_TP_STR		= { name="Segomo's Mantle", augments={'STR+20','Accuracy+20 Attack+20','STR+10','"Dbl.Atk."+10','System: 1 ID: 640 Val: 4',}}
+
+	ChirichRing_Ring1	= { name = "Chirich Ring +1", bag = "wardrobe3" }
+	ChirichRing_Ring2	= { name = "Chirich Ring +1", bag = "wardrobe4" }
+
+	HercBody_TH			= { name="Herculean Vest", augments={'"Mag.Atk.Bns."+30','AGI+6','"Treasure Hunter"+2','Mag. Acc.+14 "Mag.Atk.Bns."+14',}}
+    HercLegs_TH			= { name="Herculean Trousers", augments={'Mag. Acc.+1','MND+4','"Treasure Hunter"+2','Mag. Acc.+17 "Mag.Atk.Bns."+17',}}
 	
 	-- Precast Sets
 	
 	-- Precast sets to enhance JAs on use
-	sets.precast.JA['Hundred Fists'] = 
-	{
-		legs	= "Hesychast's Hose +1"
-	}
+	sets.precast.JA['Hundred Fists'] 	= { legs = MNK_Relic_Legs }
+	sets.precast.JA['Dodge'] 			= { feet = MNK_AF_Feet }
+	sets.precast.JA['Focus'] 			= { head = MNK_AF_Head }
+	sets.precast.JA['Counterstance'] 	= { feet = MNK_Relic_Feet }
+	sets.precast.JA['Footwork'] 		= { feet = "Shukuyu Sune-Ate" }	
+	sets.precast.JA['Formless Strikes']	= { body = MNK_Relic_Body }
+	sets.precast.JA['Mantra'] 			= { feet = MNK_Relic_Feet }
+	sets.precast.JA['Chi Blast'] 		= { head = MNK_Relic_Head }
+
 	sets.precast.JA['Boost'] = 
 	{
-		hands	= "Anch. Gloves +1",
+		hands	= MNK_AF_Hand,
+		waist	= "Ask Sash"
 	}
 	sets.precast.JA['Boost'].OutOfCombat = set_combine(sets.precast.JA['Boost'], {})
-
-	sets.precast.JA['Dodge'] = 
-	{
-		feet	= "Anchorite's Gaiters +2"
-	}
-
-	sets.precast.JA['Focus'] = 
-	{
-		head	= "Anchorite's Crown +1"
-	}
-
-	sets.precast.JA['Counterstance'] = 
-	{
-		feet	= "Hesychast's Gaiters +1"
-	}
-
-	sets.precast.JA['Footwork'] = 
-	{
-		feet	= "Bhikku Gaiters +1"
-	}
-	
-	sets.precast.JA['Formless Strikes'] = 
-	{
-		body	= "Hesychast's Cyclas"
-	}
-
-	sets.precast.JA['Mantra'] = 
-	{
-		feet	= "Hes. Gaiters +1"
-	}
-
-	sets.precast.JA['Chi Blast'] = 
-	{
-		head	= "Hes. Crown +1"
-	}
 	
 	sets.precast.JA['Chakra'] = 
 	{
-		head	= "Hiza. Somen　+2",
-		body	= "Anch. Cyclas +2",
-		hands	= "Hes. Gloves +1",
-		legs	= "Anch. Hose +1",
-		feet	= "Hiza. Sune-Ate +2",
+		ammo	= "Crepuscular Pebble",
+		head	= "Genmei Kabuto",
+		body	= MNK_AF_Body,
+		hands	= MNK_Relic_Hand,
+		legs	= "Tatena. Haidate +1",
+		feet	= "Nyame Sollerets",
+		neck	= "Unmoving Collar +1",
+		waist	= "Moonbow Belt +1",
 		ear1	= "Handler's Earring +1",
+		ear2	= "Odnowa Earring +1",
 		ring1	= "Niqmaddu Ring",
-		ring2	= "Iota Ring",
-		back	= gear.AmbuCape_MNK_VIT_WSD
+		ring2	= "Petrov Ring",
+		back	= AmbuCape_WS_VIT
 	}
 
 	-- Waltz set (chr and vit)
@@ -113,18 +122,18 @@ function init_gear_sets()
 	sets.precast.WS = 
 	{
 		ammo	= "Knobkierrie",
-		head	= "Hiza. Somen　+2",
-		body	= gear.HercBody_WSD,
-		hands	= "Malignance Gloves",
-		legs	= "Hiza. Hizayoroi +2",
-		feet	= gear.HercFeet_STR,
+		head	= "Nyame Helm",
+		body	= "Nyame Mail",
+		hands	= "Nyame Gauntlets",
+		legs	= "Nyame Flanchard",
+		feet	= "Nyame Sollerets",
 		neck	= "Fotia Gorget",
 		waist	= "Fotia Belt",
 		ear1	= "Moonshade Earring",
 		ear2	= "Sherida Earring",
 		ring1	= "Niqmaddu Ring",
 		ring2	= "Gere Ring",
-		back	= gear.AmbuCape_MNK_STR_DA
+		back	= AmbuCape_MNK_VIT_WSD
 	}
 	sets.precast.WSSomeAcc 	= {}
 	sets.precast.WSAcc 		= {}
@@ -138,174 +147,191 @@ function init_gear_sets()
 
 	-- Specific weaponskill sets.
 
-	sets.precast.WS['Raging Fists']    = 
+	sets.precast.WS['Raging Fists'] = 
 	{
-		ammo	= "Knobkierrie",
-		head	= "Hiza. Somen　+2",
-		body	= gear.HercBody_WSD,
-		hands	= "Malignance Gloves",
-		legs	= "Hiza. Hizayoroi +2",
-		feet	= gear.HercFeet_STR,
-		neck	= "Fotia Gorget",
-		waist	= "Moonbow Belt",
+		ammo	= "Coiste Bodhar",
+		head	= "Mpaca's Cap",
+		body	= "Mpaca's Doublet",
+		hands	= "Mpaca's Gloves",
+		legs	= "Tatena. Haidate +1",
+		feet	= "Mpaca's Boots",
+		neck	= "Mnk. Nodowa +2",
+		waist	= "Moonbow Belt +1",
+		ear1	= "Schere Earring",
+		ear2	= "Sherida Earring",
+		ring1	= "Niqmaddu Ring",
+		ring2	= "Gere Ring",
+		back	= AmbuCape_TP_STR
+	}
+
+	sets.precast.WS['Howling Fist'] = 
+	{
+		ammo	= "Coiste Bodhar",
+		head	= "Mpaca's Cap",
+		body	= "Nyame Mail",
+		hands	= "Nyame Gauntlets",
+		legs	= "Mpaca's Hose",
+		feet	= "Mpaca's Boots",
+		neck	= "Mnk. Nodowa +2",
+		waist	= "Moonbow Belt +1",
 		ear1	= "Moonshade Earring",
 		ear2	= "Sherida Earring",
 		ring1	= "Niqmaddu Ring",
 		ring2	= "Gere Ring",
-		back	= gear.AmbuCape_MNK_STR_DA
+		back	= AmbuCape_WS_VIT
 	}
 
-	sets.precast.WS['Howling Fist']    = 
+	sets.precast.WS['Asuran Fists'] = 
 	{
-		ammo	= "Knobkierrie",
-		head    = gear.HercHead_WSD,
-        body	= gear.HercBody_WSD,
-        hands   = gear.HercHand_DEX,
-        legs    = "Hiza. Hizayoroi +2",
-        feet    = gear.HercFeet_TA,
-        neck    = "Fotia Gorget",
-        waist   = "Moonbow Belt",
-        ear1    = "Moonshade Earring",
-        ear2    = "Sherida Earring",
-        ring1   = "Niqmaddu Ring",
-        ring2   = "Gere Ring",
-        back    = gear.AmbuCape_MNK_VIT_WSD
-	}
-
-	sets.precast.WS['Asuran Fists']    = 
-	{
-		ammo	= "Knobkierrie",
-		head	= "Malignance Chapeau",
-		body	= "Malignance Tabard",
-		hands	= "Malignance Gloves",
-		legs	= "Malignance Tights",
-		feet	= "Malignance Boots",
-        neck    = "Fotia Gorget",
-        waist   = "Fotia Belt",
-        ear1    = "Cessance Earring",
-        ear2    = "Mache Earring +1",
-        ring1   = "Rufescent Ring",
-        ring2   = "Niqmaddu Ring",
-        back    = gear.AmbuCape_MNK_VIT_WSD
-	}
-
-	sets.precast.WS["Ascetic's Fury"]  = 
-	{
-		ammo	= "Knobkierrie",
-		head	= "Hiza. Somen　+2",
-		body	= gear.HercBody_WSD,
-		hands	= "Malignance Gloves",
-		legs	= "Hiza. Hizayoroi +2",
-		feet	= gear.HercFeet_STR,
-		neck	= "Fotia Gorget",
-		waist	= "Moonbow Belt",
-		ear1	= "Moonshade Earring",
-		ear2	= "Sherida Earring",
-		ring1	= "Niqmaddu Ring",
-		ring2	= "Gere Ring",
-		back	= gear.AmbuCape_MNK_VIT_WSD
-	}
-
-	sets.precast.WS["Victory Smite"]   = 
-	{
-		ammo	= "Knobkierrie",
-		head	= "Hiza. Somen　+2",
-		body	= gear.HercBody_WSD,
-		hands	= "Malignance Gloves",
-		legs	= "Hiza. Hizayoroi +2",
-		feet	= gear.HercFeet_STR,
-		neck	= "Fotia Gorget",
-		waist	= "Moonbow Belt",
-		ear1	= "Moonshade Earring",
-		ear2	= "Sherida Earring",
-		ring1	= "Niqmaddu Ring",
-		ring2	= "Gere Ring",
-		back	= gear.AmbuCape_MNK_VIT_WSD
-	}
-
-	sets.precast.WS['Shijin Spiral']   = 
-	{
-		ammo	= "Knobkierrie",
-		head	= gear.HercHead_DEX,
-		body	= "Malignance Tabard",
-		hands	= gear.HercHand_DEX,
-		legs	= "Hiza. Hizayoroi +2",
-		feet	= "Malignance Boots",
+		ammo	= "Coiste Bodhar",
+		head	= "Nyame Helm",
+		body	= "Nyame Mail",
+		hands	= "Nyame Gauntlets",
+		legs	= "Nyame Flanchard",
+		feet	= "Nyame Sollerets",
 		neck	= "Fotia Gorget",
 		waist	= "Fotia Belt",
 		ear1	= "Mache Earring +1",
 		ear2	= "Sherida Earring",
-		ring1	= "Apate Ring",
-		ring2	= "Gere Ring",
-		back	= gear.AmbuCape_MNK_VIT_WSD
+		ring1	= ChirichRing_Ring1,
+		ring2	= ChirichRing_Ring2,
+		back	= AmbuCape_WS_VIT
 	}
 
-	sets.precast.WS['Dragon Kick']     = 
+	sets.precast.WS["Ascetic's Fury"] = 
 	{
 		ammo	= "Knobkierrie",
-		head	= "Malignance Chapeau",
-		body	= "Malignance Tabard",
-		hands	= "Malignance Gloves",
-		legs	= "Malignance Tights",
-		feet	= "Malignance Boots",
+		head	= "Nyame Helm",
+		body	= "Nyame Mail",
+		hands	= "Nyame Gauntlets",
+		legs	= "Nyame Flanchard",
+		feet	= "Nyame Sollerets",
 		neck	= "Fotia Gorget",
-		waist	= "Fotia Belt",
+		waist	= "Moonbow Belt +1",
 		ear1	= "Moonshade Earring",
 		ear2	= "Sherida Earring",
 		ring1	= "Niqmaddu Ring",
 		ring2	= "Gere Ring",
-		back	= gear.AmbuCape_MNK_VIT_WSD
+		back	= AmbuCape_WS_VIT
 	}
 
-	sets.precast.WS['Tornado Kick']    = 
+	sets.precast.WS["Victory Smite"] = 
+	{
+		ammo	= "Coiste Bodhar",
+		head	= "Adhemar Bonnet +1",
+		body	= "Mpaca's Doublet",
+		hands	= "Adhemar Wrist. +1",
+		legs	= "Mpaca's Hose",
+		feet	= "Mpaca's Boots",
+		neck	= "Mnk. Nodowa +2",
+		waist	= "Moonbow Belt +1",
+		ear1	= "Odr Earring",
+		ear2	= "Sherida Earring",
+		ring1	= "Niqmaddu Ring",
+		ring2	= "Gere Ring",
+		back	= AmbuCape_TP_STR
+	}
+
+	sets.precast.WS['Shijin Spiral'] = 
 	{
 		ammo	= "Knobkierrie",
-		head	= "Malignance Chapeau",
+		head	= "Mpaca's Cap",
 		body	= "Malignance Tabard",
 		hands	= "Malignance Gloves",
-		legs	= "Malignance Tights",
+		legs	= "Tatena. Haidate +1",
 		feet	= "Malignance Boots",
-		neck	= "Fotia Gorget",
-		waist	= "Fotia Belt",
+		neck	= "Mnk. Nodowa +2",
+		waist	= "Moonbow Belt +1",
+		ear1	= "Mache Earring +1",
+		ear2	= "Sherida Earring",
+		ring1	= "Niqmaddu Ring",
+		ring2	= "Gere Ring",
+		back	= AmbuCape_WS_VIT
+	}
+
+	sets.precast.WS['Dragon Kick'] = 
+	{
+		ammo	= "Knobkierrie",
+		head	= "Mpaca's Cap",
+		body	= "Nyame Mail",
+		hands	= "Adhemar Wrist. +1",
+		legs	= "Mpaca's Hose",
+		feet	= MNK_AF_Feet,
+		neck	= "Mnk. Nodowa +2",
+		waist	= "Moonbow Belt +1",
 		ear1	= "Moonshade Earring",
 		ear2	= "Sherida Earring",
 		ring1	= "Niqmaddu Ring",
 		ring2	= "Gere Ring",
-		back	= gear.AmbuCape_MNK_VIT_WSD
+		back	= AmbuCape_TP_STR,
+	}
+
+	sets.precast.WS['Tornado Kick'] = 
+	{
+		ammo	= "Knobkierrie",
+		head	= "Mpaca's Cap",
+		body	= "Nyame Mail",
+		hands	= "Adhemar Wrist. +1",
+		legs	= "Mpaca's Hose",
+		feet	= MNK_AF_Feet,
+		neck	= "Mnk. Nodowa +2",
+		waist	= "Moonbow Belt +1",
+		ear1	= "Moonshade Earring",
+		ear2	= "Sherida Earring",
+		ring1	= "Niqmaddu Ring",
+		ring2	= "Gere Ring",
+		back	= AmbuCape_TP_STR,
 	}
 
 	sets.precast.WS['Spinning Attack'] = 
 	{
-		ammo	= "Knobkierrie",
-		head	= "Hiza. Somen　+2",
-		body	= gear.HercBody_WSD,
-		hands	= "Malignance Gloves",
-		legs	= "Hiza. Hizayoroi +2",
-		feet	= gear.HercFeet_STR,
-		neck	= "Fotia Gorget",
-		waist	= "Moonbow Belt",
-		ear1	= "Moonshade Earring",
+		ammo	= "Coiste Bodhar",
+		head	= "Adhemar Bonnet +1",
+		body	= "Mpaca's Doublet",
+		hands	= "Adhemar Wrist. +1",
+		legs	= "Mpaca's Hose",
+		feet	= "Mpaca's Boots",
+		neck	= "Mnk. Nodowa +2",
+		waist	= "Moonbow Belt +1",
+		ear1	= "Odr Earring",
 		ear2	= "Sherida Earring",
 		ring1	= "Niqmaddu Ring",
 		ring2	= "Gere Ring",
-		back	= gear.AmbuCape_MNK_VIT_WSD
+		back	= AmbuCape_TP_STR
 	}
 
 	sets.precast.WS['Final Heaven'] = 
 	{
 		ammo	= "Knobkierrie",
-		head	= gear.HercHead_WSD,
-		body	= gear.HercBody_WSD,
-		hands	= gear.HercHand_DEX,
-		legs	= "Hiza. Hizayoroi +2",
-		feet	= "Malignance Boots",
+		head	= "Nyame Helm",
+		body	= "Nyame Mail",
+		hands	= "Nyame Gauntlets",
+		legs	= "Nyame Flanchard",
+		feet	= "Nyame Sollerets",
 		neck	= "Fotia Gorget",
-		waist	= "Moonbow Belt",
+		waist	= "Moonbow Belt +1",
 		ear1	= "Ishvara Earring",
 		ear2	= "Sherida Earring",
 		ring1	= "Niqmaddu Ring",
-		ring2	= "Gere Ring",
-		back	= gear.AmbuCape_MNK_VIT_WSD
+		ring2	= "Epaminondas's Ring",
+		back	= AmbuCape_WS_VIT
+	}
+
+	sets.precast.WS['Cataclysm'] = 
+	{
+		ammo	= "Knobkierrie",
+		head	= "Pixie Hairpin +1",
+		body	= "Nyame Mail",
+		hands	= "Nyame Gauntlets",
+		legs	= "Nyame Flanchard",
+		feet	= "Nyame Sollerets",
+		neck	= "Sibyl Scarf",
+		waist	= "Acuity Belt +1",
+		ear1	= "Friomisi Earring",
+		ear2	= "Hecate's Earring",
+		ring1	= "Epaminondas's Ring",
+		ring2	= "Archon Ring",
+		back	= AmbuCape_MD
 	}
 
 	sets.precast.WS["Raging Fists"].SomeAcc 	= set_combine(sets.precast.WS["Raging Fists"], 		sets.precast.WSSomeAcc)
@@ -351,12 +377,12 @@ function init_gear_sets()
 	-- Swap to these on Moonshade using WS if at 3000 TP
 	sets.MaxTP = 
 	{
-		ear1	= "Brutal Earring",
+		ear1	= "Schere Earring",
 		ear2	= "Sherida Earring"
 	}
 	sets.AccMaxTP = 
 	{
-		ear1	= "Mache Earring +1",
+		ear1	= "Schere Earring",
 		ear2	= "Sherida Earring"
 	}
 	
@@ -375,128 +401,129 @@ function init_gear_sets()
 	-- Idle sets
 	sets.idle = 
 	{
-		ammo	= "Ginsen",
-		head	= "Malignance Chapeau",
-		body	= "Hiza. Haramaki +2",
-		hands	= "Malignance Gloves",
-		legs	= "Malignance Tights",
-		feet	= "Malignance Boots",
-		neck	= "Twilight Torque",
-		waist	= "Moonbow Belt",
-		ear1	= "Cessance Earring",
-		ear2	= "Sherida Earring",
-		ring1	= "Niqmaddu Ring",
-		ring2	= "Defending Ring",
-		back	= gear.AmbuCape_MNK_STR_DA
-	}
-
-	sets.idle.Weak = 
-	{
-		ammo	= "Ginsen",
-		head	= "Malignance Chapeau",
-		body	= "Hiza. Haramaki +2",
-		hands	= "Malignance Gloves",
-		legs	= "Malignance Tights",
-		feet	= "Malignance Boots",
-		neck	= "Twilight Torque",
-		waist	= "Moonbow Belt",
-		ear1	= "Cessance Earring",
-		ear2	= "Sherida Earring",
-		ring1	= "Niqmaddu Ring",
-		ring2	= "Defending Ring",
-		back	= gear.AmbuCape_MNK_STR_DA
-	}
-
-	sets.idle.PDT = 
-	{
-		ammo	= "Ginsen",
+		ammo	= "Coiste Bodhar",
 		head	= "Malignance Chapeau",
 		body	= "Malignance Tabard",
 		hands	= "Malignance Gloves",
 		legs	= "Malignance Tights",
 		feet	= "Malignance Boots",
-		neck	= "Twilight Torque",
-		waist	= "Moonbow Belt",
-		ear1	= "Cessance Earring",
+		neck	= "Mnk. Nodowa +2",
+		waist	= "Moonbow Belt +1",
+		ear1	= "Schere Earring",
 		ear2	= "Sherida Earring",
 		ring1	= "Niqmaddu Ring",
 		ring2	= "Defending Ring",
-		back	= gear.AmbuCape_MNK_STR_DA
+		back	= AmbuCape_TP_STR,
+	}
+
+	sets.idle.Weak = 
+	{
+		ammo	= "Coiste Bodhar",
+		head	= "Malignance Chapeau",
+		body	= "Malignance Tabard",
+		hands	= "Malignance Gloves",
+		legs	= "Malignance Tights",
+		feet	= "Malignance Boots",
+		neck	= "Mnk. Nodowa +2",
+		waist	= "Moonbow Belt +1",
+		ear1	= "Schere Earring",
+		ear2	= "Sherida Earring",
+		ring1	= "Niqmaddu Ring",
+		ring2	= "Defending Ring",
+		back	= AmbuCape_TP_STR,
+	}
+
+	sets.idle.PDT = 
+	{
+		ammo	= "Coiste Bodhar",
+		head	= "Malignance Chapeau",
+		body	= "Malignance Tabard",
+		hands	= "Malignance Gloves",
+		legs	= "Malignance Tights",
+		feet	= "Malignance Boots",
+		neck	= "Mnk. Nodowa +2",
+		waist	= "Moonbow Belt +1",
+		ear1	= "Schere Earring",
+		ear2	= "Sherida Earring",
+		ring1	= "Niqmaddu Ring",
+		ring2	= "Defending Ring",
+		back	= AmbuCape_TP_STR,
 	}		
 
 	-- Defense sets
 	sets.defense.PDT = 
 	{
-		ammo	= "Ginsen",
+		ammo	= "Coiste Bodhar",
 		head	= "Malignance Chapeau",
 		body	= "Malignance Tabard",
 		hands	= "Malignance Gloves",
 		legs	= "Malignance Tights",
 		feet	= "Malignance Boots",
-		neck	= "Twilight Torque",
-		waist	= "Moonbow Belt",
-		ear1	= "Cessance Earring",
+		neck	= "Mnk. Nodowa +2",
+		waist	= "Moonbow Belt +1",
+		ear1	= "Schere Earring",
 		ear2	= "Sherida Earring",
 		ring1	= "Niqmaddu Ring",
 		ring2	= "Defending Ring",
-		back	= gear.AmbuCape_MNK_STR_DA
+		back	= AmbuCape_TP_STR,
 	}
 		
 	-- Defense sets
 	sets.defense.HP = 
 	{
-		ammo	= "Ginsen",
+		ammo	= "Coiste Bodhar",
 		head	= "Malignance Chapeau",
 		body	= "Malignance Tabard",
 		hands	= "Malignance Gloves",
 		legs	= "Malignance Tights",
 		feet	= "Malignance Boots",
-		neck	= "Twilight Torque",
-		waist	= "Moonbow Belt",
-		ear1	= "Cessance Earring",
+		neck	= "Mnk. Nodowa +2",
+		waist	= "Moonbow Belt +1",
+		ear1	= "Schere Earring",
 		ear2	= "Sherida Earring",
 		ring1	= "Niqmaddu Ring",
 		ring2	= "Defending Ring",
-		back	= gear.AmbuCape_MNK_STR_DA
+		back	= AmbuCape_TP_STR,
 	}
 
 	sets.defense.MDT = 
 	{
-		ammo	= "Ginsen",
+		ammo	= "Coiste Bodhar",
 		head	= "Malignance Chapeau",
 		body	= "Malignance Tabard",
 		hands	= "Malignance Gloves",
 		legs	= "Malignance Tights",
 		feet	= "Malignance Boots",
-		neck	= "Twilight Torque",
-		waist	= "Moonbow Belt",
-		ear1	= "Cessance Earring",
+		neck	= "Mnk. Nodowa +2",
+		waist	= "Moonbow Belt +1",
+		ear1	= "Schere Earring",
 		ear2	= "Sherida Earring",
 		ring1	= "Niqmaddu Ring",
 		ring2	= "Defending Ring",
-		back	= gear.AmbuCape_MNK_STR_DA
+		back	= AmbuCape_TP_STR,
 	}
 		
 	sets.defense.MEVA = 
 	{
-		ammo	= "Ginsen",
+		ammo	= "Coiste Bodhar",
 		head	= "Malignance Chapeau",
 		body	= "Malignance Tabard",
 		hands	= "Malignance Gloves",
 		legs	= "Malignance Tights",
 		feet	= "Malignance Boots",
-		neck	= "Twilight Torque",
-		waist	= "Moonbow Belt",
-		ear1	= "Cessance Earring",
+		neck	= "Mnk. Nodowa +2",
+		waist	= "Moonbow Belt +1",
+		ear1	= "Schere Earring",
 		ear2	= "Sherida Earring",
 		ring1	= "Niqmaddu Ring",
 		ring2	= "Defending Ring",
-		back	= gear.AmbuCape_MNK_STR_DA
+		back	= AmbuCape_TP_STR,
 	}
 
 	sets.Kiting = 
 	{
-		feet	= "Herald's Gaiters"
+		ring1	= "Shneddick Ring",
+		feet	= "Hippo. Socks +1"
 	}
 
 	-- Engaged sets
@@ -509,19 +536,19 @@ function init_gear_sets()
 	-- Normal melee sets
 	sets.engaged = 
 	{
-		ammo	= "Ginsen",
+		ammo	= "Coiste Bodhar",
 		head	= "Adhemar Bonnet +1",
-		body	= "Bhikku Cyclas +1",
-		hands	= "Adhemar Wrist. +1",
-		legs	= "Bhikku Hose +1",
-		feet	= "Anch. Gaiters +2",
-		neck	= "Clotharius Torque",
-		waist	= "Moonbow Belt",
-		ear1	= "Cessance Earring",
+		body	= "Mpaca's Doublet",
+		hands	= "Mpaca's Gloves",
+		legs	= "Mpaca's Hose",
+		feet	= "Malignance Boots",
+		neck	= "Mnk. Nodowa +2",
+		waist	= "Moonbow Belt +1",
+		ear1	= "Schere Earring",
 		ear2	= "Sherida Earring",
 		ring1	= "Niqmaddu Ring",
 		ring2	= "Gere Ring",
-		back	= gear.AmbuCape_MNK_STR_DA
+		back	= AmbuCape_TP_STR,
 	}
 	sets.engaged.SomeAcc 	= set_combine(sets.engaged, {})
 	sets.engaged.Acc 		= set_combine(sets.engaged, {})
@@ -531,19 +558,19 @@ function init_gear_sets()
 	-- Defensive melee hybrid sets
 	sets.engaged.PDT = 
 	{
-		ammo	= "Ginsen",
+		ammo	= "Coiste Bodhar",
 		head	= "Malignance Chapeau",
 		body	= "Malignance Tabard",
 		hands	= "Malignance Gloves",
 		legs	= "Malignance Tights",
 		feet	= "Malignance Boots",
-		neck	= "Twilight Torque",
-		waist	= "Moonbow Belt",
-		ear1	= "Cessance Earring",
+		neck	= "Mnk. Nodowa +2",
+		waist	= "Moonbow Belt +1",
+		ear1	= "Schere Earring",
 		ear2	= "Sherida Earring",
 		ring1	= "Niqmaddu Ring",
 		ring2	= "Defending Ring",
-		back	= gear.AmbuCape_MNK_STR_DA
+		back	= AmbuCape_TP_STR,
 	}
 	sets.engaged.SomeAcc.PDT 	= set_combine(sets.engaged.PDT, {})
 	sets.engaged.Acc.PDT 		= set_combine(sets.engaged.PDT, {})
@@ -557,42 +584,25 @@ function init_gear_sets()
 	sets.engaged.FullAcc.HF = set_combine(sets.engaged.FullAcc, {})
 	sets.engaged.Fodder.HF 	= set_combine(sets.engaged.Fodder, {})
 
-	sets.buff.Doom = set_combine(sets.buff.Doom, {})
-	sets.buff.Sleep = {}
-	sets.buff.Impetus = 
-	{
-		body	= "Bhikku Cyclas +1"
-	}
-	sets.buff.Footwork = 
-	{
-		feet	= "Bhikku Gaiters +1"
-	}
-	sets.buff.Boost = 
-	{
-		waist	= "Ask Sash"
-	}
-	
-	sets.FootworkWS = 
-	{
-		feet	= "Bhikku Gaiters +1"
-	}
+	sets.buff.Doom 			= set_combine(sets.buff.Doom, {})
+	sets.buff.Sleep 		= {}
+	--sets.buff.Impetus 		= { body = MNK_Empy_Body }
+	sets.buff.Footwork 		= { feet = "Shukuyu Sune-Ate" }
+	sets.FootworkWS			= { feet = "Shukuyu Sune-Ate" }
+	sets.buff.ImpetusWS		= { body = MNK_Empy_Body }
+	sets.buff.Boost			= { waist = "Ask Sash" }
 	
 	sets.DayIdle 	= {}
 	sets.NightIdle 	= {}
     sets.Knockback 	= {}
-	sets.TreasureHunter = set_combine(sets.TreasureHunter, {
-		body	= gear.HercBody_TH,
-		legs	= gear.HercLegs_TH
+
+	sets.TreasureHunter = set_combine(sets.TreasureHunter, 
+	{
+		body	= HercBody_TH,
+		legs	= HercLegs_TH
 	})
 
 	sets.Skillchain = {}
-	
-	-- Weapons sets
-	sets.weapons.Godhands = {main="Godhands"}
-	sets.weapons.Barehanded = {main=empty}
-	sets.weapons.Verethragna = {main="Verethragna"}
-	sets.weapons.Spharai = {main="Spharai"}
-
 end
 
 -- Select default macro book on initial load or subjob change.
