@@ -5,6 +5,8 @@ function user_job_setup()
     state.CastingMode:options('Normal','Resistant','AoE')
     state.IdleMode:options('Normal','NoRefresh','DT')
 	state.Weapons:options('None','Naegling','Aeneas','DualWeapons','DualNaegling','DualTauret','DualAeolian')
+	-- Whether to use Carn (or song daggers in general) under a certain threshhold even when weapons are locked.
+	state.CarnMode = M{'Always','300','1000','Never'}
 
 	gear.melee_jse_back = {name="Intarabus's Cape",augments={'Accuracy+20 Attack+20'}}
 	gear.magic_jse_back = {name="Intarabus's Cape",augments={'CHR+20','Mag. Acc+20 /Mag. Dmg.+20','Mag. Acc.+10','"Fast Cast"+10','Damage taken-5%',}}
@@ -26,6 +28,7 @@ function user_job_setup()
 	send_command('bind !r gs c weapons None;gs c update')
 	send_command('bind !q gs c weapons NukeWeapons;gs c update')
 	send_command('bind ^q gs c weapons Swords;gs c update')
+	send_command('bind !f7 gs c cycle CarnMode')
 
 	select_default_macro_book()
 end
