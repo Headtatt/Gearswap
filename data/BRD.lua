@@ -74,6 +74,8 @@ end
 function job_setup()
 
     state.ExtraSongsMode = M{['description']='Extra Songs','None','Dummy','DummyLock','FullLength','FullLengthLock'}
+	-- Whether to use Carn (or song daggers in general) under a certain threshhold even when weapons are locked.
+	state.CarnMode = M{'Always','300','1000','Never'}
 
 	state.Buff['Aftermath: Lv.3'] = buffactive['Aftermath: Lv.3'] or false
     state.Buff['Pianissimo'] = buffactive['Pianissimo'] or false
@@ -125,6 +127,9 @@ end
 
 function job_precast(spell, spellMap, eventArgs)
 	if spell.action_type == 'Magic' then
+		if spell.english:contains('Honor March') then
+			equip({range="Marsyas"})
+		end
 		if not sets.precast.FC[spell.english] and (spell.type == 'BardSong' and spell.targets.Enemy) then
 			classes.CustomClass = 'SongDebuff'
 		end
@@ -164,11 +169,12 @@ end
 
 function job_post_precast(spell, spellMap, eventArgs)
 	if spell.type == 'BardSong' then
+
+		local generalClass = get_song_class(spell)
 	
 		if state.Buff['Nightingale'] then
 		
 			-- Replicate midcast in precast for nightingale including layering.
-            local generalClass = get_song_class(spell)
 			if generalClass and sets.midcast[generalClass] then
 				if sets.midcast[generalClass][state.CastingMode.value] then
 					equip(sets.midcast[generalClass][state.CastingMode.value])
@@ -195,6 +201,17 @@ function job_post_precast(spell, spellMap, eventArgs)
 				equip(sets.midcast.Daurdabla)
 			end
 		
+		end
+
+		if state.CarnMode.value ~= 'Never' and (state.CarnMode.value == 'Always' or tonumber(state.CarnMode.value) > player.tp) then
+			if sets.midcast[generalClass].main and sets.midcast[generalClass].main ~= player.equipment.main then
+				enable('main')
+				equip({main=sets.midcast[generalClass].main})
+			end
+			if sets.midcast[generalClass].sub and sets.midcast[generalClass].sub ~= player.equipment.sub then
+				enable('sub')
+				equip({sub=sets.midcast[generalClass].sub})
+			end
 		end
 
 	elseif spell.type == 'WeaponSkill' then
@@ -278,7 +295,23 @@ end
 
 -- Set eventArgs.handled to true if we don't want automatic gear equipping to be done.
 function job_aftercast(spell, spellMap, eventArgs)
-	if spell.skill == 'Elemental Magic' and state.MagicBurstMode.value == 'Single' then
+	
+	if spell.type == 'BardSong' and not spell.interrupted then
+		if state.CarnMode.value ~= 'Never' then
+			local generalClass = get_song_class(spell)
+			if sets.midcast[generalClass].main and sets.weapons[state.Weapons.value] then
+				if sets.weapons[state.Weapons.value].main then
+					equip({main=sets.weapons[state.Weapons.value].main})
+					disable('main')
+				end
+				if sets.weapons[state.Weapons.value].sub then
+					equip({sub=sets.weapons[state.Weapons.value].sub})
+					disable('sub')
+				end
+			end
+		end
+
+	elseif spell.skill == 'Elemental Magic' and state.MagicBurstMode.value == 'Single' then
 		state.MagicBurstMode:reset()
 		if state.DisplayMode.value then update_job_states()	end
     end
