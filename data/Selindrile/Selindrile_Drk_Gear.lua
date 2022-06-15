@@ -84,6 +84,9 @@ function init_gear_sets()
 	sets.midcast.Drain = set_combine(sets.midcast['Dark Magic'], {ring1="Evanescence Ring",ring2="Archon Ring",back="Niht Mantle"})
 	
 	sets.DrainWeapon = {main="Misanthropy",sub="Alber Strap"}
+	
+	--sets.AbsorbWeapon = {main="Liberator",sub="Khonsu",range="Ullr",ammo=empty}
+	--sets.DreadWeapon = {main="Crepuscular Scythe",sub="Utu Grip",} 	
                    
 	sets.midcast.Aspir = sets.midcast.Drain
 	

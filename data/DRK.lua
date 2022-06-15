@@ -189,7 +189,13 @@ function job_post_precast(spell, spellMap, eventArgs)
 	end
 end
 
-function job_post_midcast(spell, spellMap, eventArgs)
+	--- Absorb-STAT spells Map
+	  Absorb_STAT_maps = S{
+        'Absorb-STR','Absorb-DEX','Absorb-VIT',
+        'Absorb-INT','Absorb-MND','Absorb-CHR','Absorb-AGI','Absorb-ACC',}
+	
+	
+	function job_post_midcast(spell, spellMap, eventArgs)
     if spell.skill == 'Elemental Magic' and default_spell_map ~= 'ElementalEnfeeble' and spell.english ~= 'Impact' then
         if state.MagicBurstMode.value ~= 'Off' then equip(sets.MagicBurst) end
 		if spell.element == world.weather_element or spell.element == world.day_element then
@@ -210,7 +216,7 @@ function job_post_midcast(spell, spellMap, eventArgs)
 		if state.Buff['Nether Void'] and sets.buff['Nether Void'] and (spell.english:startswith('Absorb') or spell.english:startswith('Drain')) then
 			equip(sets.buff['Nether Void'])
 		end
-		if state.Buff['Dark Seal'] and sets.buff['Dark Seal'] and (spell.english:startswith('Absorb') or spell.english == 'Dread Spikes' or spell.english == 'Drain II' or spell.english == 'Drain III') then
+		if state.Buff['Dark Seal'] and sets.buff['Dark Seal'] and (Absorb_STAT_maps:contains(spell.english) or spell.english == 'Dread Spikes' or spell.english == 'Drain II' or spell.english == 'Drain III') then
 			equip(sets.buff['Dark Seal'])
 		end
 		if (spell.english == 'Drain II' or spell.english == 'Drain III') and state.DrainSwapWeaponMode.value ~= 'Never' then
@@ -219,8 +225,20 @@ function job_post_midcast(spell, spellMap, eventArgs)
 				equip(sets.DrainWeapon)
 			end
 		end
+			if Absorb_STAT_maps:contains(spell.english) and state.DrainSwapWeaponMode.value ~= 'Never' then
+			if sets.AbsorbWeapon and (state.DrainSwapWeaponMode.value == 'Always' or tonumber(state.DrainSwapWeaponMode.value) > player.tp) then
+				enable('main','sub','range','ammo')
+				equip(sets.AbsorbWeapon)
+			end
+		end
+			if spell.english == 'Dread Spikes' and state.DrainSwapWeaponMode.value ~= 'Never' then
+			if sets.DreadWeapon and (state.DrainSwapWeaponMode.value == 'Always' or tonumber(state.DrainSwapWeaponMode.value) > player.tp) then
+				enable('main','sub','range','ammo')				
+				equip(sets.DreadWeapon)
+			end
+		end
     end
-end
+end 
 
 function job_tick()
 	if check_hasso() then return true end

@@ -31,3 +31,4 @@ libs/closetCleaner.lua
 
 Modes.lua
 organizer-lib.lua
+data/export/*
