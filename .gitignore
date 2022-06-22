@@ -23,8 +23,9 @@ libs/rev1/*
 *_Crafting.lua
 *-Items.lua
 *-Globals.lua
-
-
+data/common/*
+data/user/*
+data/export/*
 
 
 libs/closetCleaner.lua
