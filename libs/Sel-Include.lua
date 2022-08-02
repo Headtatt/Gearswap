@@ -121,7 +121,6 @@ function init_include()
 	state.ReEquip 			  = M(false, 'ReEquip Mode')
 	state.AutoArts	 		  = M(false, 'AutoArts Mode')
 	state.AutoLockstyle	 	  = M(false, 'AutoLockstyle Mode')
-	state.AutoTrustMode 	  = M(false, 'Auto Trust Mode')
 	state.RngHelper		 	  = M(false, 'RngHelper')
 	state.HoverShot		 	  = M(true, 'HoverShot')
 	state.RngHelperQuickDraw  = M(false, 'RngHelperQuickDraw')
@@ -157,6 +156,7 @@ function init_include()
 	state.RuneElement 		  = M{['description'] = 'Rune Element','Ignis','Gelus','Flabra','Tellus','Sulpor','Unda','Lux','Tenebrae'}
 	state.ElementalMode 	  = M{['description'] = 'Elemental Mode', 'Fire','Ice','Wind','Earth','Lightning','Water','Light','Dark'}
 	state.AutoSambaMode 	  = M{['description']= 'Auto Samba Mode', 'Off', 'Haste Samba', 'Aspir Samba', 'Drain Samba II'}
+    state.AutoTrustMode 	  = M{['description'] = 'Auto Trust Mode','Off','Auto'}
 
 	state.MagicBurstMode 	  = M{['description'] = 'Magic Burst Mode', 'Off', 'Single', 'Lock'}
 	state.SkillchainMode 	  = M{['description'] = 'Skillchain Mode', 'Off', 'Single', 'Lock'}
@@ -285,6 +285,16 @@ function init_include()
 	sets.DuskIdle = {}
 	sets.DayIdle = {}
 	sets.NightIdle = {}
+    
+    sets.trusts = {
+        Auto = {
+            {SpellID=910,  Name="Valaineral"},
+            {SpellID=1005, Name="Ayame"},
+            {SpellID=911,  Name="Joachim"},
+            {SpellID=952,  Name="Koru-Moru"},
+            {SpellID=898,  Name="Kupipi"},
+        }
+    }
 	
     gear = {}
     gear.default = {}

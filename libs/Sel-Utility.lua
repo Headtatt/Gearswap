@@ -1409,37 +1409,36 @@ function check_cleanup()
 end
 
 function check_trust()
-	if not moving and state.AutoTrustMode.value and not data.areas.cities:contains(world.area) and (buffactive['Reive Mark'] or buffactive['Elvorseal'] or not player.in_combat) then
+	if not moving and state.AutoTrustMode.value ~= 'Off' and not data.areas.cities:contains(world.area) and (buffactive['Reive Mark'] or buffactive['Elvorseal'] or not player.in_combat) then
+		local auto_trust_list = sets.trusts[state.AutoTrustMode.value];
 		local party = windower.ffxi.get_party()
-		if party.p5 == nil then
+        
+		local pcount = 0
+		for i = 1,5 do
+			local m = party['p'..i]
+			if not m then break                    -- no more party members available
+			elseif not m.mob then pcount = i       -- member not in the zone, must be a player
+			elseif not m.mob.is_npc then break end -- member is an npc, so not a player
+		end
+        
+		local tcount = auto_trust_list and #auto_trust_list or 0
+        local offset = math.min(pcount + tcount, 5);
+
+		if auto_trust_list and #auto_trust_list >= 1 and party['p'..offset] == nil then
 			local spell_recasts = windower.ffxi.get_spell_recasts()
-		
-			if spell_recasts[979] < spell_latency and not have_trust("Selh'teus") then
-				windower.chat.input('/ma "Selh\'teus" <me>')
-				tickdelay = os.clock() + 4.5
-				return true
-			elseif spell_recasts[1012] < spell_latency and not have_trust("Nashmeira") then
-				windower.chat.input('/ma "Nashmeira II" <me>')
-				tickdelay = os.clock() + 4.5
-				return true
-			elseif spell_recasts[1018] < spell_latency and not have_trust("Iroha") then
-				windower.chat.input('/ma "Iroha II" <me>')
-				tickdelay = os.clock() + 4.5
-				return true
-			elseif spell_recasts[1017] < spell_latency and not have_trust("Arciela") then
-				windower.chat.input('/ma "Arciela II" <me>')
-				tickdelay = os.clock() + 4.5
-				return true
-			elseif spell_recasts[947] < spell_latency and not have_trust("UkaTotlihn") then
-				windower.chat.input('/ma "Uka Totlihn" <me>')
-				tickdelay = os.clock() + 4.5
-				return true
-			elseif spell_recasts[1013] < spell_latency and not have_trust("Lilisette") then
-				windower.chat.input('/ma "Lilisette II" <me>')
-				tickdelay = os.clock() + 4.5
-				return true
+
+			if auto_trust_list and #auto_trust_list > 0 then
+				for i,v in pairs(auto_trust_list) do
+					local spell = res.spells[v.SpellID]
+					if spell_recasts[spell.id] < spell_latency and not have_trust(v.Name) then
+						windower.chat.input(('%s "%s" <me>'):format(spell.prefix, spell.en))
+						tickdelay = os.clock() + 4.5
+						return true;
+					end
+				end
+				return false;
 			else
-				return false
+				add_to_chat(123, ''..state.AutoTrustMode.value..' trust set is not defined!')
 			end
 		end
 	

@@ -10,6 +10,13 @@ function user_job_setup()
 	state.ResistDefenseMode:options('MEVA')
 	state.Weapons:options('Tizbron','Tizalmace','None','Almace','MeleeClubs','HybridWeapons','Naegbron','Naegmace')
 
+	sets.trusts['Cleave'] = {
+		{SpellID=931, Name='Moogle'   },
+		{SpellID=927, Name='Sakura'   },
+		{SpellID=978, Name='Kopufried'},
+	}
+	state.AutoTrustMode:options('Off','Auto','Cleave')
+
     state.ExtraMeleeMode = M{['description']='Extra Melee Mode','None','MP','SuppaBrutal','DWEarrings','DWMax'}
 
 	gear.da_jse_back = {name="Rosmerta's Cape",augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10',}}
@@ -586,6 +593,20 @@ function select_default_macro_book()
 	else
 		set_macro_page(6, 2)
 	end
+end
+
+function job_state_change(name, newVal, oldVal)
+    if name == 'Cleaving' then
+        if newVal ~= false then
+            state.DefenseMode:set('Physical')
+            state.Weapons:set('MeleeClubs')
+            state.AutoTrustMode:set('Cleave')
+        else
+            state.DefenseMode:reset()
+            state.Weapons:reset()
+            state.AutoTrustMode:reset()
+        end
+    end
 end
 
 autows_list = {['Tizbron']='Expiacion',['Tizalmace']='Expiacion',['Almace']='Chant Du Cygne',['MeleeClubs']='Realmrazer',
