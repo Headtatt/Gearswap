@@ -229,7 +229,7 @@ function job_setup()
     }
 
 	update_melee_groups()
-	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoShadowMode","AutoFoodMode","AutoNukeMode","AutoStunMode","AutoDefenseMode",},{"AutoBuffMode","AutoSambaMode","Weapons","OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","LearningMode","CastingMode","TreasureMode"})
+	init_job_states({"Capacity","AutoRuneMode","AutoTrustMode","AutoWSMode","AutoShadowMode","AutoFoodMode","AutoNukeMode","AutoStunMode","AutoDefenseMode","Cleaving"},{"AutoBuffMode","AutoSambaMode","Weapons","OffenseMode","WeaponskillMode","IdleMode","Passive","RuneElement","LearningMode","CastingMode","TreasureMode"})
 end
 
 -------------------------------------------------------------------------------------------------------------------
@@ -584,6 +584,20 @@ function check_buffup()
 	else
 		return false
 	end
+end
+
+function job_state_change(name, newVal, oldVal)
+    if name == 'Cleaving' then
+        if newVal ~= false then
+            state.DefenseMode:set('Physical')
+            if cleaveweapon then
+                state.Weapons:set(cleaveweapon)
+            end
+        else
+            state.DefenseMode:reset()
+            state.Weapons:reset()
+        end
+    end
 end
 
 buff_spell_lists = {

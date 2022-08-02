@@ -151,6 +151,7 @@ function init_include()
 	state.UnlockWeapons		  = M(false, 'Unlock Weapons')
 	state.SelfWarp2Block 	  = M(true, 'Block Warp2 on Self')
 	state.MiniQueue		 	  = M(true, 'MiniQueue')
+    state.Cleaving            = M(false, 'Cleaving')
 
 	state.AutoBuffMode 		  = M{['description'] = 'Auto Buff Mode','Off','Auto'}
 	state.RuneElement 		  = M{['description'] = 'Rune Element','Ignis','Gelus','Flabra','Tellus','Sulpor','Unda','Lux','Tenebrae'}
@@ -1100,7 +1101,7 @@ function default_post_precast(spell, spellMap, eventArgs)
 			end
 		end
 		
-		if state.DefenseMode.value ~= 'None' and (player.in_combat or being_attacked) then
+		if not state.Cleaving.value and state.DefenseMode.value ~= 'None' and (player.in_combat or being_attacked) then
 			if spell.action_type == 'Magic' then
 				if sets.precast.FC[spell.english] and sets.precast.FC[spell.english].DT then
 					equip(sets.precast.FC[spell.english].DT)
@@ -1184,7 +1185,7 @@ function default_post_midcast(spell, spellMap, eventArgs)
 			equip(sets.TreasureHunter)
 		end
 		
-		if state.DefenseMode.value ~= 'None' and spell.action_type == 'Magic' and (player.in_combat or being_attacked) then
+		if not state.Cleaving.value and state.DefenseMode.value ~= 'None' and spell.action_type == 'Magic' and (player.in_combat or being_attacked) then
 			if sets.midcast[spell.english] and sets.midcast[spell.english].DT then
 				equip(sets.midcast[spell.english].DT)
 			elseif sets.midcast[spellMap] and sets.midcast[spellMap].DT then

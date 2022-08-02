@@ -202,6 +202,7 @@ function update_job_states()
 		PetWSGear = "PetWSGear",
 		DanceStance = "DanceStance",
 		Stance = "Stance",
+        Cleaving = 'Cleaving',
     }
 
     stateBox:clear()
