@@ -215,7 +215,7 @@ elseif spell.skill == 'Dark Magic' then
 	if state.Buff['Nether Void'] and sets.buff['Nether Void'] and (Wants_Dark_Seal_maps:contains(spell.english) or spell.english == 'Absorb-Attri') then
 		equip(sets.buff['Nether Void'])
 	end
-	if state.Buff['Dark Seal'] and sets.buff['Dark Seal'] and Wants_DarkSeal_maps:contains(spell.english)  then
+	if state.Buff['Dark Seal'] and sets.buff['Dark Seal'] and Wants_Dark_Seal_maps:contains(spell.english)  then
 		equip(sets.buff['Dark Seal'])
 	end
 	if (spell.english == 'Drain II' or spell.english == 'Drain III') and state.DrainSwapWeaponMode.value ~= 'Never' then
