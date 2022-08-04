@@ -189,7 +189,7 @@ function job_post_precast(spell, spellMap, eventArgs)
 	end
 end
 
-Wants_DarkSeal_maps = S{
+Wants_Dark_Seal_maps = S{
 	'Absorb-STR','Absorb-DEX','Absorb-VIT',
 	'Absorb-INT','Absorb-MND','Absorb-CHR','Absorb-AGI','Absorb-ACC', 'Dread Spikes', 'Drain II', 'Drain III'}
 
