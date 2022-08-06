@@ -1309,6 +1309,14 @@ function check_samba()
 	end
 end
 
+function check_buff_active(buff)
+    if buff and not buff.BuffID then
+        local spell = res.spells[buff.SpellID];
+        buff.BuffID = spell and spell.status or buff.Buff
+    end
+    return buff and buff.BuffID and buffactive[buff.BuffID] or false
+end
+
 function check_sub()
 	if state.AutoSubMode.value and not data.areas.cities:contains(world.area) then
 		if player.mpp < 70 and player.tp > 999 then
