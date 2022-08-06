@@ -617,7 +617,7 @@ buff_spell_lists = {
 		{Name='Stoneskin',			Buff='Stoneskin',		SpellID=54,		Reapply=false},
 		{Name='Occultation',		Buff='Blink',			SpellID=679,	Reapply=false},
 		{Name='Blink',				Buff='Blink',			SpellID=53,		Reapply=false},
-		{Name='Carcharian Verve',	Buff='Aquaveil',		SpellID=745,	Reapply=false},
+		{Name='Carcharian Verve',	Buff='Aquaveil',		SpellID=745,	Reapply=false, BuffID = 39},
 		{Name='Memento Mori',		Buff='Magic Atk. Boost',SpellID=538,	Reapply=false},
 	},
 }
