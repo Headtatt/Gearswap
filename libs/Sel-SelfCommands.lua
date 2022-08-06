@@ -680,6 +680,9 @@ function handle_autows(cmdParams)
 		if state.DisplayMode.value then update_job_states()	end
 	else
 		autows = table.concat(cmdParams, ' '):ucfirst()
+		if state.Weapons.value then
+			autows_list[state.Weapons.value] = autows
+		end
 		add_to_chat(122,'Your autows weaponskill is set to '..autows..'.')
 		if state.DisplayMode.value then update_job_states()	end
 	end
