@@ -32,8 +32,4 @@ libs/closetCleaner.lua
 
 Modes.lua
 organizer-lib.lua
-data/Instructions.txt
-data/ninjutsu.lua
-data/skillup.lua
-data/trust-list.lua
-data/**/Rename.bat
+data/export/*
