@@ -341,7 +341,7 @@ function check_reaction(act)
 				local defensive_action = false
 				if not midaction() then
 					local abil_recasts = windower.ffxi.get_ability_recasts()
-					if player.main_job == 'DRG' and state.AutoJumpMode.value and abil_recasts[160] < latency then
+					if state.AutoSuperJumpMode.value and  abil_recasts[160] and abil_recasts[160] < latency then
 						windower.chat.input('/ja "Super Jump" <t>')
 						defensive_action = true
 					elseif (player.main_job == 'SAM' or player.sub_job == 'SAM') and ability_type == 'Physical' and abil_recasts[133] < latency then
