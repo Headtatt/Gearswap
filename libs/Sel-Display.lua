@@ -179,6 +179,7 @@ function update_job_states()
 		AutoNukeMode = "Auto Nuke: "..autonuke.."",
 		AutoSongMode = "Auto Song",
 		AutoJumpMode = "Auto Jump",
+		AutoSuperJumpMode = "Auto SuperJump",
 		AutoWSMode = "Auto WS: "..autows..": "..autowstp.."",
 		AutoShadowMode = "Auto Shadows",
 		AutoFoodMode = "Auto Food: "..autofood.."",
