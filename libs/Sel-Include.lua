@@ -152,6 +152,8 @@ function init_include()
 	state.UnlockWeapons		  = M(false, 'Unlock Weapons')
 	state.SelfWarp2Block 	  = M(true, 'Block Warp2 on Self')
 	state.MiniQueue		 	  = M(true, 'MiniQueue')
+	state.PWUnlock		 	  = M(false, 'PWUnlock')
+	
 
 	state.AutoBuffMode 		  = M{['description'] = 'Auto Buff Mode','Off','Auto'}
 	state.RuneElement 		  = M{['description'] = 'Rune Element','Ignis','Gelus','Flabra','Tellus','Sulpor','Unda','Lux','Tenebrae'}
@@ -1637,8 +1639,17 @@ function get_idle_set(petStatus)
 		idleSet = set_combine(idleSet, sets.weapons[state.Weapons.value])
 	end
 	
-	if (buffactive.sleep or buffactive.Lullaby) and (player.main_job == 'SMN' and pet.isvalid) then
-		idleSet = set_combine(idleSet, sets.buff.Sleep)
+	if (buffactive.sleep or buffactive.Lullaby) and sets.IdleWakeUp then
+		if item_available("Sacrifice Torque") and player.main_job == 'SMN' and pet.isvalid then
+			idleSet = set_combine(idleSet, sets.IdleWakeUp)
+		elseif item_available("Prime Horn") and player.main_job == 'BRD' then
+			idleSet = set_combine(idleSet, sets.IdleWakeUp)    
+		elseif state.Weapons.value == 'None' or state.UnlockWeapons.value then
+				idleSet = set_combine(idleSet, sets.IdleWakeUp)
+		elseif state.PWUnlock.value then
+			windower.send_command('gs c set unlockweapons true; wait 1; gs c set unlockweapons false')
+			idleSet = set_combine(idleSet, sets.IdleWakeUp)
+		end
 	end
 	
     if buffactive.doom then
@@ -1735,8 +1746,19 @@ function get_melee_set()
     end
 	
 	if (buffactive.sleep or buffactive.Lullaby) and sets.buff.Sleep then
-        meleeSet = set_combine(meleeSet, sets.buff.Sleep)
-    end
+		if (item_available("Vim Torque") or item_available("Vim Torque +1")) and (player.main_job == 'WAR' or player.main_job == 'PLD' or player.main_job == 'DRK' or player.main_job == 'SAM' or player.main_job == 'DRG') then
+			meleeSet = set_combine(meleeSet, sets.buff.Sleep)
+		elseif item_available("Frenzy Sallet") and (player.main_job == 'MNK' or player.main_job == 'THF' or player.main_job == 'DRK' or player.main_job == 'BST' or player.main_job == 'SAM' or player.main_job == 'DRG' or player.main_job == 'DNC' or player.main_job == 'RUN') then
+			meleeSet = set_combine(meleeSet, sets.buff.Sleep)
+		elseif item_available("Berserker's Torque") and (player.main_job == 'WAR' or player.main_job == 'PLD' or player.main_job == 'DRK' or player.main_job == 'SAM' or player.main_job == 'DRG') then
+			meleeSet = set_combine(meleeSet, sets.buff.Sleep)
+		elseif state.Weapons.value == 'None' or state.UnlockWeapons.value then
+			meleeSet = set_combine(meleeSet, sets.buff.Sleep)
+		elseif state.PWUnlock.value then
+			windower.send_command('gs c set unlockweapons true; wait 1; gs c set unlockweapons false')
+			meleeSet = set_combine(meleeSet, sets.buff.Sleep)
+		end
+	end
 	
 	if buffactive.doom then
         meleeSet = set_combine(meleeSet, sets.buff.Doom)
