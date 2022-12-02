@@ -173,7 +173,7 @@ function init_gear_sets()
 		body="Fili Hongreline +1",hands="Inyan. Dastanas +2",ring1="Metamorph Ring +1",ring2="Stikini Ring +1",
 		back=gear.magic_jse_back,waist="Acuity Belt +1",legs="Inyanga Shalwar +2",feet="Brioso Slippers +2"}
 		
-	sets.midcast.SongDebuff.DW = {main="Kali",sub="Kali"}
+	sets.midcast.SongDebuff.DW = {main="Kali",sub="Kali"} --Only weapons in this set
 
 	-- For song defbuffs (accuracy primary, duration secondary)
 	sets.midcast.SongDebuff.Resistant = {main="Daybreak",sub="Ammurapi Shield",range="Blurred Harp +1",ammo=empty,
@@ -187,7 +187,7 @@ function init_gear_sets()
 		body="Inyanga Jubbah +2",hands="Gendewitha Gages +1",ring1="Kishar Ring",ring2="Prolix Ring",
 		back=gear.magic_jse_back,waist="Witful Belt",legs="Fili Rhingrave +1",feet="Aya. Gambieras +2"}
 		
-	sets.midcast.SongDebuff.DW = {}
+	sets.midcast.SongDebuff.DW = {} --Only weapons in this set
 
 	-- Cast spell with normal gear, except using Daurdabla instead
     sets.midcast.Daurdabla = {range=info.ExtraSongInstrument}
