@@ -19,6 +19,8 @@ function user_job_setup()
 	send_command('bind !` input /ja "Seigan" <me>')
 	send_command('bind @` gs c cycle SkillchainMode')
 	send_command('bind !r gs c weapons Greatsword;gs c update')
+
+	--Ikenga_axe_bonus = 300  -- It is 300 at R25. Uncomment if you need to manually adjust because you are using below R25 or above
 	
 	select_default_macro_book()
 end
