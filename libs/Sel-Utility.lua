@@ -2429,7 +2429,8 @@ windower.raw_register_event('outgoing chunk',function(id,original,modified,injec
 end)
 
 --TP Bonus Handling
-Ikenga_vest_bonus = 190  -- It is 190 at R20. Don't edit here, the same variable is in place in both COR and RNG gearfiles.
+Ikenga_vest_bonus = 190  -- It is 190 at R25. Don't edit here, the same variable is in place in both COR and RNG gearfiles.
+Ikenga_axe_bonus = 300  -- It is 300 at R25. Don't edit here, add the variable to function user_job_setup() in WAR and BST gearfiles.
 
 function get_effective_player_tp(spell, WSset)
 	local effective_tp = player.tp
@@ -2443,6 +2444,9 @@ function get_effective_player_tp(spell, WSset)
 	if WSset.ear1 == "Moonshade Earring" or WSset.ear2 == "Moonshade Earring" then effective_tp = effective_tp + 250 end
 	if WSset.head == "Mpaca's Cap" then effective_tp = effective_tp + 200 end
 	if WSset.body == "Ikenga's Vest" then effective_tp = effective_tp + Ikenga_vest_bonus end
+	if WSset.legs == "Boii Cuisses +3" then effective_tp = effective_tp + 100 end
+	if player.equipment.main == "Ikenga's Axe" then effective_tp = effective_tp + Ikenga_axe_bonus end
+	if player.equipment.sub == "Ikenga's Axe" then effective_tp = effective_tp + Ikenga_axe_bonus end
 	
 	if spell.skill == 25 or spell.skill == 26 then
 		if data.equipment.aeonic_weapons:contains(player.equipment.range) then effective_tp = effective_tp + 500 end
@@ -2484,7 +2488,11 @@ do
 		local adjusted_fencer_tier = base_fencer_tier
 		
 		if WSset.legs and WSset.legs:startswith('Boii Cuisses') then 
-			if WSset.legs:endswith('+1') then
+			if WSset.legs:endswith('+3') then
+				adjusted_fencer_tier = adjusted_fencer_tier + 3
+			elseif WSset.legs:endswith('+2') then
+					adjusted_fencer_tier = adjusted_fencer_tier + 3    
+			elseif WSset.legs:endswith('+1') then
 				adjusted_fencer_tier = adjusted_fencer_tier + 2
 			else
 				adjusted_fencer_tier = adjusted_fencer_tier + 1
@@ -2545,8 +2553,12 @@ function get_base_fencer_tier()
 			end
 		end
 
-	elseif player.sub_job == 'WAR' and player.sub_job_level >= 45 then
-		fencer_tier_level = 1
+	elseif fencer_jobs_level_thresholds[player.sub_job] ~= nil then
+		for _,level_threshold in ipairs(fencer_jobs_level_thresholds[player.sub_job]) do
+			if player.sub_job_level >= level_threshold then
+				fencer_tier_level = fencer_tier_level + 1
+			end
+		end
 	end
 
 	return fencer_tier_level

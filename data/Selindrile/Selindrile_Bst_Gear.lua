@@ -39,6 +39,9 @@ function user_job_setup()
 	--Example of how to change default ready moves.
 	--ready_moves.default.WarlikePatrick = 'Tail Blow'
 
+
+	--Ikenga_axe_bonus = 300  -- It is 300 at R25. Uncomment if you need to manually adjust because you are using below R25 or above
+
 	select_default_macro_book()
 end
 
