@@ -187,8 +187,8 @@ function init_gear_sets()
 	sets.precast.WS['Ground Strike'].HighAcc = set_combine(sets.precast.WS.HighAcc,{})
 	sets.precast.WS['Ground Strike'].FullAcc = set_combine(sets.precast.WS.FullAcc,{})
 		
-    sets.precast.WS['Herculean Slash'] = set_combine(sets.precast['Lunge'], {})
-	sets.precast.WS['Sanguine Blade'] = set_combine(sets.precast['Lunge'], {})
+    sets.precast.WS['Herculean Slash'] = set_combine(sets.precast.JA['Lunge'], {})
+	sets.precast.WS['Sanguine Blade'] = set_combine(sets.precast.JA['Lunge'], {})
 
 	--------------------------------------
 	-- Midcast sets
