@@ -163,6 +163,16 @@ function job_midcast(spell, spellMap, eventArgs)
 					equip(sets.midcast[generalClass])
 				end
             end
+			if state.CarnMode.value ~= 'Never' and (state.CarnMode.value == 'Always' or tonumber(state.CarnMode.value) > player.tp) then
+				if sets.midcast[generalClass].main and sets.midcast[generalClass].main ~= player.equipment.main then
+					enable('main')
+					equip({main=sets.midcast[generalClass].main})
+				end
+				if sets.midcast[generalClass].sub and sets.midcast[generalClass].sub ~= player.equipment.sub then
+					enable('sub')
+					equip({sub=sets.midcast[generalClass].sub})
+				end
+			end
         end
     end
 end
@@ -204,13 +214,13 @@ function job_post_precast(spell, spellMap, eventArgs)
 		end
 
 		if state.CarnMode.value ~= 'Never' and (state.CarnMode.value == 'Always' or tonumber(state.CarnMode.value) > player.tp) then
-			if sets.midcast[generalClass].main and sets.midcast[generalClass].main ~= player.equipment.main then
+			if sets.precast.FC.BardSong.main and sets.precast.FC.BardSong.main ~= player.equipment.main then
 				enable('main')
-				equip({main=sets.midcast[generalClass].main})
+				equip({main=sets.precast.FC.BardSong.main})
 			end
-			if sets.midcast[generalClass].sub and sets.midcast[generalClass].sub ~= player.equipment.sub then
+			if sets.precast.FC.BardSong.sub and sets.precast.FC.BardSong.sub ~= player.equipment.sub then
 				enable('sub')
-				equip({sub=sets.midcast[generalClass].sub})
+				equip({sub=sets.precast.FC.BardSong.sub})
 			end
 		end
 
