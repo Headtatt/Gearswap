@@ -26,6 +26,7 @@ libs/rev1/*
 data/common/*
 data/user/*
 data/export/*
+Snaps-RngHelper_Settings.xml
 
 
 libs/closetCleaner.lua
