@@ -127,7 +127,15 @@ end
 function job_post_precast(spell, spellMap, eventArgs)
 
 	if spell.action_type == 'Magic' and state.DeathMode.value ~= 'Off' then
-		equip(sets.precast.FC.Death)
+		if sets.precast.FC[spell.english] and sets.precast.FC[spell.english].Death then
+			equip(sets.precast.FC[spell.english].Death)
+		elseif sets.precast.FC[spellMap] and sets.precast.FC[spellMap].Death then
+			equip(sets.precast.FC[spellMap].Death)
+		elseif sets.precast.FC[spell.skill] and sets.precast.FC[spell.skill].Death then
+			equip(sets.precast.FC[spell.skill].Death)
+		else
+			equip(sets.precast.FC.Death)
+		end
 	elseif spell.type == 'WeaponSkill' then
 		local WSset = standardize_set(get_precast_set(spell, spellMap))
 		
