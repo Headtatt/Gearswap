@@ -666,8 +666,8 @@ function silent_can_use(spellid)
 	local available_spells = windower.ffxi.get_spells()
 	local spell_jobs = copy_entry(res.spells[spellid].levels)
         
-	-- Filter for spells that you do not know. Exclude Impact, Honor March and Dispelga.
-	if not available_spells[spellid] and not (spellid == 503 or spellid == 417 or spellid == 360) then
+	-- Filter for spells that you do not know. Exclude Impact, Honor March,  Dispelga and Aria of Passion.
+	if not available_spells[spellid] and not (spellid == 503 or spellid == 417 or spellid == 360 or spellid == 418) then
 		return false
 	-- Filter for spells that you know, but do not currently have access to
 	elseif (not spell_jobs[player.main_job_id] or not (spell_jobs[player.main_job_id] <= player.main_job_level or
@@ -691,7 +691,7 @@ function can_use(spell)
         local spell_jobs = copy_entry(res.spells[spell.id].levels)
         
         -- Filter for spells that you do not know. Exclude Impact.
-        if not available_spells[spell.id] and not (spell.id == 503 or spell.id == 417 or spellid == 360) then
+        if not available_spells[spell.id] and not (spell.id == 503 or spell.id == 417 or spell.id == 360 or spell.id == 418 ) then
             add_to_chat(123,"Abort: You haven't learned ["..(res.spells[spell.id][language] or spell.id).."].")
             return false
         elseif spell.type == 'Ninjutsu'  then
