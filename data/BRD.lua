@@ -130,6 +130,9 @@ function job_precast(spell, spellMap, eventArgs)
 		if spell.english:contains('Honor March') then
 			equip({range="Marsyas"})
 		end
+		if spell.english:contains('Aria of Passion') then
+			equip({range="Loughnashade"})
+		end
 		if not sets.precast.FC[spell.english] and (spell.type == 'BardSong' and spell.targets.Enemy) then
 			classes.CustomClass = 'SongDebuff'
 		end
