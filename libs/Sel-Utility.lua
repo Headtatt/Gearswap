@@ -691,7 +691,7 @@ function can_use(spell)
         local spell_jobs = copy_entry(res.spells[spell.id].levels)
         
         -- Filter for spells that you do not know. Exclude Impact.
-        if not available_spells[spell.id] and not (spell.id == 503 or spell.id == 417 or spellid == 360 or spell.id == 418 ) then
+        if not available_spells[spell.id] and not (spell.id == 503 or spell.id == 417 or spell.id == 360 or spell.id == 418 ) then
             add_to_chat(123,"Abort: You haven't learned ["..(res.spells[spell.id][language] or spell.id).."].")
             return false
         elseif spell.type == 'Ninjutsu'  then
