@@ -161,7 +161,7 @@ function check_reaction(act)
 	-- Track buffs locally
 	if curact.category == 4 then
 		act_info = res.spells[curact.param]
-		if curact.targets[1].actions[1].message == 230 then
+		if curact.targets[1].actions[1].message == 230 and targetsMe then
 			if EnhancingAbility:contains(act_info.name) then
 				if act_info.name:endswith('II') then
 					if act_info.name:startswith('Haste') then
