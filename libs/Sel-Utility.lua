@@ -2219,20 +2219,13 @@ function check_rune()
 			windower.chat.input('/ja "Pflug" <me>')
 			tickdelay = os.clock() + 1.8
 			return true
-		elseif player.main_job == 'RUN' then
-			if not (state.Buff['Vallation'] or state.Buff['Valiance']) then
-				if abil_recasts[113] < latency then
-					windower.chat.input('/ja "Valiance" <me>')
-					tickdelay = os.clock() + 2.5
-					return true
-				elseif abil_recasts[23] < latency then
-					windower.chat.input('/ja "Vallation" <me>')
-					tickdelay = os.clock() + 2.5
-					return true
-				end
-			end
+			
 		elseif not (buffactive['Vallation'] or buffactive['Valiance']) then
-			if abil_recasts[23] < latency then
+			if abil_recasts[113] and abil_recasts[113] < latency then
+				windower.chat.input('/ja "Valiance" <me>')
+				tickdelay = os.clock() + 2.5
+				return true
+			elseif abil_recasts[23] < latency then
 				windower.chat.input('/ja "Vallation" <me>')
 				tickdelay = os.clock() + 2.5
 				return true
@@ -2341,8 +2334,12 @@ function get_current_stratagem_count()
 	local StratagemChargeTimer = 240
 	local maxStratagems = 1
 	
-	if player.sub_job == 'SCH' and player.sub_job_level > 29 then
-		StratagemChargeTimer = 120
+	if player.sub_job == 'SCH' then
+		if player.sub_job_level > 49 then
+			StratagemChargeTimer = 80
+		elseif player.sub_job_level > 29 then
+			StratagemChargeTimer = 120
+		end
 	elseif player.main_job_level > 89 then
 		if player.job_points[(res.jobs[player.main_job_id].ens):lower()].jp_spent > 549 then
 			StratagemChargeTimer = 33
@@ -2358,7 +2355,9 @@ function get_current_stratagem_count()
 	end
 	
 	if player.sub_job == 'SCH' then
-		if player.sub_job_level > 29 then
+		if player.sub_job_level > 49 then
+			maxStratagems = 3
+		elseif player.sub_job_level > 29 then
 			maxStratagems = 2
 		end
 	else
