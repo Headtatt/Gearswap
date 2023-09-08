@@ -1647,7 +1647,9 @@ function get_idle_set(petStatus)
 		elseif state.Weapons.value == 'None' or state.UnlockWeapons.value then
 				idleSet = set_combine(idleSet, sets.IdleWakeUp)
 		elseif state.PWUnlock.value then
-			windower.send_command('gs c set unlockweapons true; wait 1; gs c set unlockweapons false')
+			send_command('@input //gs c set unlockweapons true')
+			windower.chat.input:schedule(3,'//gs c set unlockweapons false')
+			tickdelay = os.clock() + 1.25
 			idleSet = set_combine(idleSet, sets.IdleWakeUp)
 		end
 	end
@@ -1755,7 +1757,9 @@ function get_melee_set()
 		elseif state.Weapons.value == 'None' or state.UnlockWeapons.value then
 			meleeSet = set_combine(meleeSet, sets.buff.Sleep)
 		elseif state.PWUnlock.value then
-			windower.send_command('gs c set unlockweapons true; wait 1; gs c set unlockweapons false')
+			send_command('@input //gs c set unlockweapons true')
+			windower.chat.input:schedule(3,'//gs c set unlockweapons false')
+			tickdelay = os.clock() + 1.25
 			meleeSet = set_combine(meleeSet, sets.buff.Sleep)
 		end
 	end
