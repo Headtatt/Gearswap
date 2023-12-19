@@ -1,0 +1,103 @@
+Selecting an element:
+//gs c set element value		Where value is Earth, Fire, Water, Wind, Light, Dark, Blizzard, Thunder
+/con gs c set value			(for macro ingame)
+Can also cycle this,
+//gs c cycle element
+/con gs c cycle element
+
+Once that is set you have a number of short cuts that will perform action of the selected element
+
+Spikes:
+//gs c elemental spikes			Will cast Blaze/Ice/Shock spikes provided they match the set element
+/con gs c elemental spikes
+
+Enspell:
+//gs c elemental enspell		Will do enspell matching the selected element
+/con gs c elemental enspell
+
+Weather:
+//gs c elemental weather		Will cast Klimaform if not up, if up will cast the storm spell matching the set element
+/con gs c elemental weather
+
+Nuke:
+//gs c elemental nuke			Will cast starting with highest tier to lowest tier the nuke matching set element
+/con gs c elemental nuke
+
+//gs c elemental smallnuke		Will cast starting with Tier II down to tier I a nuke matching the set element
+/con gs c elemental smallnuke
+
+//gs c elemental nuke tierX		Will cast the nuke matching the tier provided matchign the set element, where tier1, tier2, tier3, tier4, tier5, tier6 are accepted
+/con gs c elemental nuke tierX
+
+//gs c elemental ara			Will cast available ara nuke from highest tier to lowest matching the set element
+/con gs c elemental ara
+
+//gs c elemental aga			Will cast available aga nuke from highest tier to lowest matching the set element
+/con gs c elemental aga
+
+//gs c elemental helix			Will cast the highest available helix spell that matches the set element
+/con gs c elemental helix
+
+Enfeebles:
+//gs c elemental enfeeble		Will cast the elemental DoT nukes (Burn, Frost, Choke, Rasp, Shock, Drown) or Dia II/Bio II for Light/Dark elemental types
+/con gs c elemental enfeeble
+
+Ninjutsu:
+//gs c elemental ninjutsu		Will cast starting with highest tier to lowest tier the ninjutsu nuke matching set element
+/con gs c elemental ninjutsu
+
+Scholar Skillchains:
+//gs c elemental skillchain1		Will do a level 1 skill chain matching the element set, closing with a tier I helix if available, else the matching tier I spell
+/con gs c elemental skillchain1
+
+//gs c elemental skillchain2		Will do a level 2 skill chain matching the element set, closing with a tier I helix if available, else the matching tier I spell
+/con gs c elemental skillchain2
+
+//gs c elemental skillchain3		Will perform a three step skillchain, level I to level II marching the element set, closing with a helix I if available (only works with Fire)
+/con gs c elemental skillchain3
+
+//gs c elemental skillchain4		Will perform a four step skillchain, meant for objectives only, element set doesn't matter
+/con gs c elemental skillchain4
+
+//gs c elemental skillchain6		Will perform a six step skillchain, meant for objectives only, element set doesn't matter
+/con gs c elemental skillchain6
+
+//gs c elemental wsskillchain		Will perform a self skillchain utilizing a WS combined with strategems, only works with staff and club, not all elemental options available
+/con gs c elemental wsskillchain
+
+//gs c elemental endskillchain		Will close a skillchain matching the set elemental, will use the Tier I spell for all but Light/Dark
+/con gs c elemental endskillchain
+
+Strategems:
+//gs c scholar light			Will use Light Arts on first hit, if Light Arts is up, will use Addendum: White
+/con gs c scholar light
+
+//gs c scholar dark			Will use Dark Arts on first hit, if Dark Arts is up, will use Addendum: Black
+/con gs c scholar dark
+
+//gs c scholar cost			Will use Penury/Parsimony depending on Arts active
+/con gs c scholar cost
+
+//gs c scholar speed			Will use Celerity/Alacrity depending on Arts active
+/con gs c scholar speed
+
+//gs c scholar aoe			Will use Accession/Manifestation depending on Arts active
+/con gs c scholar aoe
+
+//gs c scholar power			Will use Rapture/Ebullience depending on Arts active
+/con gs c scholar power
+
+//gs c scholar duration			Will use Perpetuance or give an error message depending on Arts Active
+/con gs c scholar duration
+
+//gs c scholar accuracy			Will use Altruism/Focalization depending on Arts active
+/con gs c scholar accuracy
+
+//gs c scholar enmity			Will use Tranquility/Equanimity depending on Arts active
+/con gs c scholar enmity
+
+//gs c scholar skillchain		Will use Immanence or give an error message depending on Arts Active
+/con gs c scholar skillchain
+
+//gs c scholar addendum			Will use Light/Dark Arts depending on Arts active
+/con gs c scholar addendum
