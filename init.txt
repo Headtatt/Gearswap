@@ -1,0 +1,280 @@
+keyboard_allowmmf 1
+
+//Set console variables
+console_position 15 50
+console_color 255 255 0 0
+console_displayactivity 1
+console_fadedelay 3500
+console_chatopen 1
+console_screendir screenshots
+
+//Set game variables
+game_forceambientlight 1
+game_ambientlight 255 120 120 120
+game_gamma 50
+game_allowsetcursorpos 0
+game_exittype 1
+game_exitprompt 1
+game_allowresize 0
+
+//Set general variables
+//showfps 1
+// FPS Position - Use -75 1 to position it on the top right corner.
+fps_position 5 5
+
+drawdistance set 10
+//Bind keys
+//Bind syntax is "bind <key> <up> <command>
+// ^ represents control- and ! is alt, eg !1 is alt-1
+bind ^@!f9 drawdistance set 10
+bind ^@!f10 drawdistance set 1
+bind ^@!f1 game_forceambientlight
+bind ^@!f11 showfps
+bind sysrq screenshot png hide
+bind ^sysrq screenshot png
+bind ^v paste
+
+//Sets ConsoleBG Background Position
+consolebg position 15 50
+consolebg size 1300 310
+
+// *** ALLIANCE TARGET KEYS ***
+// This lets you push Alt+F1-6 and Ctrl+F1-6 to  to target Alliance members.
+bind ^f1 input /ta <a10>
+bind ^f2 input /ta <a11>
+bind ^f3 input /ta <a12>
+bind ^f4 input /ta <a13>
+bind ^f5 input /ta <a14>
+bind ^f6 input /ta <a15>
+bind !f1 input /ta <a20>
+bind !f2 input /ta <a21>
+bind !f3 input /ta <a22>
+bind !f4 input /ta <a23>
+bind !f5 input /ta <a24>
+bind !f6 input /ta <a25>
+
+// Fix Fatfinger Slips
+// Prevents changing macrosets when you hit shift because fatfinger.
+bind ^~1 ;
+bind !~1 ;
+bind ^~2 ;
+bind !~2 ;
+bind ^~3 ;
+bind !~3 ;
+bind ^~4 ;
+bind !~4 ;
+bind ^~5 ;
+bind !~5 ;
+bind ^~6 ;
+bind !~6 ;
+bind ^~7 ;
+bind !~7 ;
+bind ^~8 ;
+bind !~8 ;
+bind ^~9 ;
+bind !~9 ;
+bind ^~0 ;
+bind !~0 ;
+
+//Prevent healing when not targetting.
+bind %h input /lockon;
+
+//Jumping fun.
+//bind %space jump
+//bind ^%space jump
+//bind !%space jump
+//bind %~space jump
+
+//My own addons, for requestable spells and abilities, downloadable here: https://www.dropbox.com/sh/qz5rb5je202cbu3/AAAxozfBv_8agarM0NCnPTiZa?dl=0
+//Requires shortcuts for most functionality.
+//lua load Request
+//lua load Repeater
+//lua load Roller
+
+//Other addons I found that are quite good
+//lua load Gaze_check
+//lua load SellNPC
+//lua load QuietSparks
+//lua load DistanceTParty
+//lua load ZetaDistancePlus
+//lua load BetterAutoEnterKey
+//lua load NagMeNot
+//lua load PorterPacker
+//lua load HTMB
+lua l XiPivot
+
+//Other binds!
+//@ = Windows Key
+//% = Works only when text bar not up.
+//$ = Works only when text bar is up.
+//^ = Control Key
+//! = Alt Key
+//~ = Shift Key
+//# - Apps Key
+
+//Addon binds.
+
+//Anchor controls - Can't be force moved.
+bind ^@!q lua load anchor
+bind @q lua unload anchor
+
+//Dressup controls - Prevents blinking.
+bind ^@!o lua load dressup
+bind @o lua unload dressup
+
+//Zonetimer plugin controls.
+bind @t lua unload zonetimer
+bind ^@!t lua reload zonetimer
+
+//Gametime plugin controls.
+bind @i lua unload gametime
+bind ^@!i lua reload gametime
+
+//Treasury plugin controls.
+bind @r lua unload treasury
+bind ^@!r lua reload treasury
+
+//Aliases mostly for convienience of use on request.
+alias uninterruptible gs c toggle Uninterruptible
+alias blusets azuresets setlist
+alias asets azuresets setlist
+alias attack input /attack
+alias dummy gs c cycle ExtraSongsMode
+alias dummysong gs c cycle ExtraSongsMode;herbpastoral me
+alias geo gs c toggle AutoBuffMode;gs c update user
+//alias ffxicalc run -runonce "D:/Games/FFXI Tools/FFXI Calculator/FFXICalculator.exe"
+//alias calculator run -runonce "C:/Windows/system32/calc.exe"
+//alias calc run -runonce "C:/Windows/system32/calc.exe"
+//alias lightshot run -runonce "C:/Program Files (x86)/Skillbrains/lightshot/Lightshot.exe"
+//alias obs run -runonce "C:/Program Files (x86)/obs-studio/bin/64bit/obs64.exe"
+//alias windower run -runonce "D:/Games/FFXI Tools/Windower4Live/Windower.exe"
+alias roll roller roll
+alias healus lua load healbot;wait 1;hb on
+alias quitit lua unload healbot
+alias showset gs c showset
+alias useitem gs c useitem
+
+//Mode aliases for ease of use.
+alias blockwarp gs c toggle BlockWarp
+alias rune gs c cycle RuneElement
+alias autows gs c toggle AutoWSMode
+alias autofood gs c toggle AutoFoodMode
+alias deathmode gs c cycle DeathMode
+alias autotank gs c toggle AutoTankMode
+alias autonuke gs c toggle AutoNukeMode
+alias autoengage gs c toggle AutoEngageMode
+alias autostun gs c toggle AutoStunMode
+alias autodefense gs c toggle AutoDefenseMode
+alias autotrust gs c toggle AutoTrustMode
+alias autobuff gs c toggle AutoBuffMode
+alias autocleanup gs c toggle AutoCleanupMode
+alias autosub gs c toggle AutoSubMode
+alias autorune gs c toggle AutoRuneMode
+alias autoshoot gs c toggle AutoShootMode
+alias changerune gs c toggle RuneElement
+alias acc gs c cycle OffenseMode
+alias racc gs c cycle RangedMode
+alias hybrid gs c cycle HybridMode
+alias rangeacc gs c cycle RangedMode
+alias wsacc gs c cycle WeaponskillMode
+alias pdt gs c set DefenseMode Physical
+alias changepdt gs c cycle PhysicalDefenseMode
+alias kiting gs c toggle Kiting
+alias kite gs c toggle Kiting
+alias mdt gs c set DefenseMode Magical
+alias changemdt gs c cycle MagicalDefenseMode
+alias macc gs c cycle CastingMode
+alias meva gs c set DefenseMode Resist
+alias changemeva gs c cycle ResistDefenseMode
+alias idle gs c cycle IdleMode
+alias changeidle gs c cycle IdleMode
+alias defoff gs c reset DefenseMode
+alias defenseoff gs c reset DefenseMode
+alias curecheat gs c curecheat
+
+//Rune element aliases
+alias firerune gs c set RuneElement Ignis;
+alias windrune gs c set RuneElement Flabra;
+alias airrune gs c set RuneElement Flabra;
+alias lightningrune gs c set RuneElement Sulpor;
+alias thunderrune gs c set RuneElement Sulpor;
+alias lightrune gs c set RuneElement Lux;
+alias earthrune gs c set RuneElement Tellus;
+alias stonerune gs c set RuneElement Tellus;
+alias icerune gs c set RuneElement Gelus;
+alias blizzardrune gs c set RuneElement Gelus;
+alias waterrune gs c set RuneElement Unda;
+alias darkrune gs c set RuneElement Tenebrae;
+
+--Usable item gearswap command aliases.
+alias nexus gs c useitem back Nexus Cape
+alias facilityring gs c useitem ring2 Facility Ring
+alias capacityring gs c useitem ring2 Capacity Ring
+alias warpring gs c useitem ring2 Warp Ring
+alias hollaring gs c useitem ring2 Dim. Ring (Holla)
+alias demring gs c useitem ring2 Dim. Ring (Dem)
+alias mearing gs c useitem ring2 Dim. Ring (Mea)
+alias tavring gs c useitem ring2 Tavnazian Ring
+alias capacity get "Mecisto. Mantle" satchel;wait 3;gs c set Capacity true
+alias behedom gs c useitem head Behe. Masque +1
+alias bacon gs c useitem set BehemothSuit
+alias reisen gs c useitem head Cumulus Masque +1
+alias jeuno gs c useitem head Maat\'s Cap
+alias cobra gs c useitem main Cobra Staff
+alias ram gs c useitem main Ram Staff
+alias republic gs c useitem main Republic Staff
+
+--Capacity item binds.
+bind ^@!z get "Mecisto. Mantle" satchel;get "Capacity Ring" satchel;wait 1;get "Trizek Ring" satchel;wait 1;get "Vocation Ring" satchel;wait 1;get "Facility Ring" satchel
+bind ^!z put "Mecisto. Mantle" satchel;put "Capacity Ring" satchel;wait 1;put "Trizek Ring" satchel;wait 1;put "Vocation Ring" satchel;wait 1;put "Facility Ring" satchel;wait 1;put "Guide Beret" satchel
+
+//General Elementalmode aliases
+alias firemode gs c set ElementalMode Fire;
+alias windmode gs c set ElementalMode Wind;
+alias airmode gs c set ElementalMode Wind;
+alias aeromode gs c set ElementalMode Wind;
+alias lightningmode gs c set ElementalMode Lightning;
+alias thundermode gs c set ElementalMode Lightning;
+alias lightmode gs c set ElementalMode Light;
+alias earthmode gs c set ElementalMode Earth;
+alias stonemode gs c set ElementalMode Earth;
+alias icemode gs c set ElementalMode Ice;
+alias blizzardmode gs c set ElementalMode Ice;
+alias watermode gs c set ElementalMode Water;
+alias darkmode gs c set ElementalMode Dark;
+alias darknessmode gs c set ElementalMode Dark;
+alias nuke gs c elemental nuke
+alias smallnuke gs c elemental smallnuke
+
+//Scholar specific aliases
+alias liquefaction gs c set ElementalMode Fire;gs c elemental skillchain1
+alias detonation gs c set ElementalMode Wind;gs c elemental skillchain1
+alias impaction gs c set ElementalMode Lightning;gs c elemental skillchain1
+alias transfixion gs c set ElementalMode Light;gs c elemental skillchain1
+alias scission gs c set ElementalMode Earth;gs c elemental skillchain1
+alias induration gs c set ElementalMode Ice;gs c elemental skillchain1
+alias reverberation gs c set ElementalMode Water;gs c elemental skillchain1
+alias compression gs c set ElementalMode Dark;gs c elemental skillchain1
+
+alias fusion gs c set ElementalMode Fire;gs c elemental skillchain2
+alias fragmentation gs c set ElementalMode Lightning;gs c elemental skillchain2
+alias gravitation gs c set ElementalMode Earth;gs c elemental skillchain2
+alias distortion gs c set ElementalMode Ice;gs c elemental skillchain2
+
+//Gearup Aliases
+
+alias gather gs c naked;gs disable all;wait .5;gs org;wait 3;gs c showset
+//alias gearup gs c naked;gs disable all;wait .5;put * wardrobe4 all;put storage slip* case all;wait 3;gs c showset
+alias geardown gs c naked;gs disable all;wait .5;get * wardrobe4 all; get storage slip* all;wait 3;gs c showset
+//alias porter packer repack
+//alias getslips get storage slip* all
+//alias putslips put storage slip* case all
+
+//Blockhelp
+wait 30;input /blockhelp
+
+// The below command uncaps FPS to 60.  Setting it to 0 uncaps it and setting it to 2 is the default setting of 30.
+config FrameRateDivisor 1
+
+//HD Mods
+pivot a XiView
