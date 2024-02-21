@@ -236,6 +236,7 @@ function init_include()
 	autonuke = 'Fire'
 	autows = ''
 	autows_list = {}
+	weapons_pagelist = {}
 	smartws = nil
 	rangedautows = ''
 	autowstp = 1000
@@ -2344,9 +2345,18 @@ function state_change(stateField, newValue, oldValue)
 			newValue = state.Weapons.value
 			if not state.ReEquip.value then	equip_weaponset(newValue) end
 		end
-		
+
 		if autows_list[newValue] then
-			autows = autows_list[newValue]
+			if type(autows_list[newValue]) == "table" then
+				autows 		= autows_list[newValue][1]
+				autowstp 	= autows_list[newValue][2]
+			else
+				autows 		= autows_list[newValue]
+			end
+		end
+
+		if weapons_pagelist[newValue] then
+			set_macro_page(weapons_pagelist[newValue][1], weapons_pagelist[newValue][2])
 		end
 	elseif stateField == 'Unlock Weapons' then
 		if newValue == true then
