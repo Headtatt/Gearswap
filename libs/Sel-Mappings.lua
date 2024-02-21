@@ -188,7 +188,7 @@ data.weaponskills.elemental = S{'Wildfire','Leaden Salute','Sanguine Blade','Aeo
 'Blade: Teki','Blade: To','Blade: Chi','Blade: Ei','Blade: Yu','Burning Blade','Red Lotus Blade','Shining Blade',
 'Seraph Blade','Gust Slash','Cyclone','Shining Strike','Seraph Strike','Frostbite','Freezebite','Herculean Slash','Gale Axe',
 'Cloudsplitter','Primal Rend','Thunder Thrust','Raiden Thrust','Rock Crusher','Earth Crusher','Starburst','Sunburst',
-'Garland of Bliss','Flaming Arrow','Hot Shot'}
+'Garland of Bliss','Flaming Arrow','Hot Shot','Vidohunir'}
 
 data.weaponskills.statue_ws = {['COR']='Leaden Salute',['RNG']='Trueflight',['RDM']='Sanguine Blade',['BLU']='Sanguine Blade'}
 
