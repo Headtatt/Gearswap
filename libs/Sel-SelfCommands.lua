@@ -413,7 +413,12 @@ function handle_weapons(cmdParams)
 	end
 
 	if autows_list[state.Weapons.value] then
-		autows = autows_list[state.Weapons.value]
+		if type(autows_list[state.Weapons.value]) == "table" then
+			autows 		= autows_list[state.Weapons.value][1]
+			autowstp 	= autows_list[state.Weapons.value][2]
+		else
+			autows 		= autows_list[state.Weapons.value]
+		end
 	end
 
 	if state.DisplayMode.value then update_job_states()	end
