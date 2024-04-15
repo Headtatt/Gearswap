@@ -2585,11 +2585,9 @@ end
 warcry_tp_bonus = get_warcry_tp_bonus()
 
 function set_dual_wield()
-	if (data.jobs.dual_wield_jobs:contains(player.main_job) or (player.sub_job == 'DNC' or player.sub_job == 'NIN')) then
-		can_dual_wield = true
-	else
-		can_dual_wield = false
-	end
+    -- Checks Job Traits directly. Will always recognize DW appropriately for all jobs (NIN ,DNC, THF, BLU)
+    local traits = T(windower.ffxi.get_abilities().job_traits)
+    can_dual_wield = traits:any(function(v) return gearswap.res.job_traits[v].english == 'Dual Wield' end)
 end
 
 function get_closest_mob_id_by_name(name)
